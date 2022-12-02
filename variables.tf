@@ -1,12 +1,22 @@
-# TEMPLATE: All variables must have a description and should declare their type.
-# TEMPLATE: Set defaults whenever possible but do not set defaults for required properties.
-# TEMPLATE: Declare all variables in this file, sprawling declarations are difficult to identify.
-# TEMPLATE:
-# TEMPLATE: https://www.terraform.io/docs/language/values/variables.html
-# TEMPLATE: https://www.terraform.io/docs/language/expressions/types.html
-#
-variable "example" {
+variable "enable_metallb" {
+  description = "Enable Metallb add-on"
+  type        = bool
+  default     = false
+}
+
+variable "tags" {
+  description = "Additional tags (e.g. `map('BusinessUnit`,`XYZ`)"
+  type        = map(string)
+  default     = {}
+}
+
+variable "project" {
+  description = "Equinix project"
   type        = string
-  description = "The example value defines what will be included in the example output. This example is descriptive."
-  sensitive   = false
+}
+
+variable "metro" {
+  description = "Equinix metro code"
+  type        = string
+  default     = "DA"
 }

@@ -1,7 +1,20 @@
-module "example" {
-  # TEMPLATE: Replace this path with the Git repo path or Terraform Registry path
+module "terraform-equinix-kubernetes-addons" {
   source = "../../"
 
-  # Define any required variables
-  example = "example"
+  project = var.project
+  metro   = local.metro
+
+  cluster_endpoint = var.cluster_endpoint
+
+  enable_metallb = true
+
+  tags = local.tags
+}
+
+locals {
+  metro = "LD"
+
+  tags = {
+    Template = "simple"
+  }
 }
