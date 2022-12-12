@@ -1,8 +1,13 @@
 locals {
-    module_context = {
-        k8s_cluster_endpoint = var.cluster_endpoint
-        equinix_metro   = var.metro
-        equinix_project = var.project
-        tags = var.tags
-    } 
+
+    ssh_config = {
+        host = var.host
+        private_key = var.private_key
+    }
+
+    addon_context = {
+        equinix_metro   = var.equinix_metro
+        equinix_project = var.equinix_project
+        tags            = var.tags
+    }
 }

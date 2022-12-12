@@ -1,20 +1,15 @@
 module "terraform-equinix-kubernetes-addons" {
   source = "../../"
 
-  project = var.project
-  metro   = local.metro
+  equinix_project = var.project
+  equinix_metro   = "LD"
 
-  cluster_endpoint = var.cluster_endpoint
+  host        = var.host
+  private_key = var.private_key
 
   enable_metallb = true
-
-  tags = local.tags
-}
-
-locals {
-  metro = "LD"
-
-  tags = {
-    Template = "simple"
+  metallb_config = {
+    services = ["my-app"]
+    bgp_customer_asn = 62345
   }
 }
