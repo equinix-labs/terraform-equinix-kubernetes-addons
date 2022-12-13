@@ -20,6 +20,9 @@ locals {
         "addresses" = setunion(try(ap.addresses, []), try(local.address_pools_requested_map[ap.name].addresses, [])) 
       }
   }
+
+  kubeconfig = try(var.addon_context.kubeconfig_remote_path, "") == null ? "" : var.addon_context.kubeconfig_remote_path
+  kubectl    = local.kubeconfig != "" ? format("kubectl --kubeconfig %s", local.kubeconfig) : "kubectl"
 }
 
 resource "null_resource" "setup_metallb" {
@@ -32,7 +35,7 @@ resource "null_resource" "setup_metallb" {
 
   provisioner "remote-exec" {
     inline = [
-      "kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${local.metallb_version}/config/manifests/metallb-native.yaml",
+      format("%s apply -f https://raw.githubusercontent.com/metallb/metallb/${local.metallb_version}/config/manifests/metallb-native.yaml", local.kubectl)
     ]
   }
 }
@@ -58,7 +61,7 @@ resource "null_resource" "config_metallb" {
 
   provisioner "remote-exec" {
     inline = [
-      "kubectl apply -f /tmp/metallb-config.yaml",
+      format("%s apply -f /tmp/metallb-config.yaml", local.kubectl)
     ]
   }
 }

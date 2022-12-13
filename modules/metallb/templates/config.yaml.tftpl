@@ -38,9 +38,9 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  %{ for addr in ip_value.addresses ~}
+%{ for addr in ip_value.addresses ~}
   - ${addr}
-  %{ endfor ~}
+%{ endfor ~}
   autoAssign: false
 ---
 %{ endfor ~}

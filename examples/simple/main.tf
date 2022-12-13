@@ -5,14 +5,16 @@ module "terraform-equinix-kubernetes-addons" {
   equinix_metro   = "LD"
 
   host        = var.host
-  private_key = var.private_key
+  private_key = file(var.private_key_path)
+
+  kubeconfig_remote_path = var.kubeconfig_remote_path
 
   enable_metallb = true
   metallb_config = {
 
     address_pools = [
       {
-        "name" = "sandbox",
+        "name" = "sandbox"
         "request" = {
           "quantity" = 1  #The number of allocated /32 addresses, power of 2, up to 256
           //TODO "familiy" = ipv4
@@ -21,10 +23,11 @@ module "terraform-equinix-kubernetes-addons" {
         # "addresses" = ["192.168.10.0/24", "192.168.9.1-192.168.9.", "fc00:f853:0ccd:e799::/124"]
       },
       {
-        "name" = "production",
+        "name" = "production"
         "request" = {
           "quantity" = 4
         }
+        # "addresses" = []
       }
     ]
 

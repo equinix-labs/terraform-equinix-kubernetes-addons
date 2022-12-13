@@ -12,6 +12,7 @@ variable addon_context {
   type = object({
     equinix_project = string
     equinix_metro = string
+    kubeconfig_remote_path = string
   })
 }
 
