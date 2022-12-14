@@ -1,73 +1,63 @@
-## terraform-equinix-template
+# Terraform Equinix Kubernetes Addons
 
-<!-- TEMPLATE: Review all "TEMPLATE" comments and remove them when applied. -->
-<!-- TEMPLATE: replace "template" with the name of your project. The prefix "terraform-equinix-" informs the Terraform registry that this project is a Terraform module associated with the Equinix provider, Oreserve this prefix.  "terraform-metal-" may also be used for Equinix Metal modules, but "terraform-equinix-" will work too. -->
 [![Experimental](https://img.shields.io/badge/Stability-Experimental-red.svg)](https://github.com/equinix-labs/standards#about-uniform-standards)
 [![terraform](https://github.com/equinix-labs/terraform-equinix-template/actions/workflows/integration.yaml/badge.svg)](https://github.com/equinix-labs/terraform-equinix-template/actions/workflows/integration.yaml)
 
-`terraform-equinix-template` is a minimal Terraform module that utilizes [Terraform providers for Equinix](https://registry.terraform.io/namespaces/equinix) to provision digital infrastructure and demonstrate higher level integrations.
+> **[Experimental](https://github.com/equinix-labs/equinix-labs/blob/main/experimental-statement.md)**
+> This project is experimental and a work in progress. The support is provided best-effort by the Kubernetes Addons community.
+>
+>
 
-<!-- TEMPLATE: Insert an image here of the infrastructure diagram. You can generate a starting image using instructions found at https://www.terraform.io/docs/cli/commands/graph.html#generating-images -->
+This repository contains a collection of Terraform modules (addons) to help automate the deploy and management of Kubernetes components in Kubernetes environments running on [Equinix Metal](https://deploy.equinix.com/) baremetal.
 
-### Usage
+## Getting Started
+//TODO
 
-This project is experimental and supported by the user community. Equinix does not provide support for this project.
+## Usage
+//TODO
 
-Install Terraform using the official guides at <https://learn.hashicorp.com/tutorials/terraform/install-cli>.
+## Examples
+//TODO
 
-This project may be forked, cloned, or downloaded and modified as needed as the base in your integrations and deployments.
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
-This project may also be used as a [Terraform module](https://learn.hashicorp.com/collections/terraform/modules).
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_equinix"></a> [equinix](#requirement\_equinix) | >= 1.11.1 |
 
-To use this module in a new project, create a file such as:
+## Providers
 
-```hcl
-# main.tf
-terraform {
-  required_providers {
-    equinix = {
-      source = "equinix/equinix"
-    }
-    metal = {
-      source = "equinix/metal"
-    }
-}
+No providers.
 
-module "example" {
-  source = "github.com/equinix-labs/template"
-  # TEMPLATE: replace "template" with the name of the repo after the terraform-equinix- or terraform-metal- prefix.
+## Modules
 
-  # Published modules can be sourced as:
-  # source = "equinix-labs/template/equinix"
-  # See https://www.terraform.io/docs/registry/modules/publish.html for details.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_metallb"></a> [metallb](#module\_metallb) | ./modules/metallb | n/a |
 
-  # version = "0.1.0"
+## Resources
 
-  # TEMPLATE: insert required variables here
-}
-```
+No resources.
 
-Run `terraform init -upgrade` and `terraform apply`.
+## Inputs
 
-<!-- TEMPLATE: Expand this section with any additional information or requirements. -->
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_enable_metallb"></a> [enable\_metallb](#input\_enable\_metallb) | Enable Metallb add-on | `bool` | `false` | no |
+| <a name="input_equinix_metro"></a> [equinix\_metro](#input\_equinix\_metro) | Equinix metro code | `string` | n/a | yes |
+| <a name="input_equinix_project"></a> [equinix\_project](#input\_equinix\_project) | Equinix project | `string` | n/a | yes |
+| <a name="input_kubeconfig_remote_path"></a> [kubeconfig\_remote\_path](#input\_kubeconfig\_remote\_path) | Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server | `string` | n/a | yes |
+| <a name="input_metallb_config"></a> [metallb\_config](#input\_metallb\_config) | Configuration for Metallb add-on | `any` | `{}` | no |
+| <a name="input_ssh_host"></a> [ssh\_host](#input\_ssh\_host) | The address of the server from where to perform kubectl installations and changes | `string` | n/a | yes |
+| <a name="input_ssh_private_key"></a> [ssh\_private\_key](#input\_ssh\_private\_key) | The contents of an SSH key to use for the connection. These can be loaded from a file on disk using the file function | `string` | n/a | yes |
+| <a name="input_ssh_user"></a> [ssh\_user](#input\_ssh\_user) | The user to use for the connection | `string` | `"root"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Additional tags (e.g. `['k8s`,`production`] | `list(string)` | `[]` | no |
 
-#### Variables
+## Outputs
 
-|     Variable Name      |  Type   |        Default Value        | Description                                             |
-| :--------------------: | :-----: | :-------------------------: | :------------------------------------------------------ |
-|                        |         |                             |                                                         |
-
-<!-- TEMPLATE: If published, remove the table and use the following: See <https://registry.terraform.io/modules/equinix-labs/template/equinix/latest?tab=inputs> for a description of all variables. -->
-
-#### Outputs
-
-|     Variable Name      |  Type   | Description                                             |
-| :--------------------: | :-----: | :------------------------------------------------------ |
-|                        |         |                                                         |
-
-<!-- TEMPLATE: If published, remove the table and use the following: See <https://registry.terraform.io/modules/equinix-labs/template/equinix/latest?tab=outputs> for a description of all outputs. -->
-
-### Examples
-
-- [examples/simple](examples/simple/)
-
+| Name | Description |
+|------|-------------|
+| <a name="output_metallb"></a> [metallb](#output\_metallb) | n/a |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

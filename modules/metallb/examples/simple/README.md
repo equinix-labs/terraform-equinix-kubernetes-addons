@@ -8,4 +8,3 @@ This example demonstrates usage of the Metallb addon module.
 terraform init
 terraform apply
 ```
-
