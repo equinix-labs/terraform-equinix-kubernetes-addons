@@ -1,22 +1,22 @@
 module "terraform-equinix-kubernetes-addons" {
-  source = "../../"
+  source = "../../../../"
 
   equinix_project = var.project
   equinix_metro   = "LD"
 
-  host        = var.host
-  private_key = file(var.private_key_path)
+  ssh_host        = var.host
+  ssh_private_key = file(var.private_key_path)
 
   kubeconfig_remote_path = var.kubeconfig_remote_path
 
   enable_metallb = true
-  metallb_config = {
 
+  metallb_config = {
     address_pools = [
       {
         "name" = "sandbox"
         "request" = {
-          "quantity" = 1  #The number of allocated /32 addresses, power of 2, up to 256
+          "quantity" = 1 #The number of allocated /32 addresses, power of 2, up to 256
           //TODO "familiy" = ipv4
           //TODO "type" = public/global
         }
@@ -27,7 +27,9 @@ module "terraform-equinix-kubernetes-addons" {
         "request" = {
           "quantity" = 4
         }
-        # "addresses" = []
+        # #All address_pools objects may have same structure, if one of them define `addresses`
+        # #the others must declare the addresses field as well, and it can be an empty list
+        # "addresses" = [] 
       }
     ]
 

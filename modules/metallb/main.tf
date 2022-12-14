@@ -1,5 +1,6 @@
 locals {
   metallb_version = "v0.13.7"
+  metallb_install_url = "https://raw.githubusercontent.com/metallb/metallb/${local.metallb_version}/config/manifests/metallb-native.yaml"
 
   my_asn   = try(var.addon_config.bgp_peer.my_asn, 65000) #equinix_metal_server_asn
   peer_asn = try(var.addon_config.bgp_peer.peer_asn, 65530) #equinix_metal_tor_asn
@@ -26,16 +27,34 @@ locals {
 }
 
 resource "null_resource" "setup_metallb" {
+
+  triggers = {
+    kubectl             = local.kubectl
+    metallb_install_url = local.metallb_install_url
+    host                = var.ssh_config.host
+    user                = var.ssh_config.user
+    private_key         = var.ssh_config.private_key
+  }
+
   connection {
     type        = "ssh"
-    user        = "root"
-    host        = var.ssh_config.host
-    private_key = var.ssh_config.private_key
+    user        = self.triggers.user
+    host        = self.triggers.host
+    private_key = self.triggers.private_key
   }
 
   provisioner "remote-exec" {
     inline = [
-      format("%s apply -f https://raw.githubusercontent.com/metallb/metallb/${local.metallb_version}/config/manifests/metallb-native.yaml", local.kubectl)
+      format("%s apply -f %s", self.triggers.kubectl, self.triggers.metallb_install_url)
+    ]
+  }
+
+  provisioner "remote-exec" {
+    when       = destroy
+    on_failure = continue
+
+    inline = [
+      format("%s delete -f %s", self.triggers.kubectl, self.triggers.metallb_install_url)
     ]
   }
 }
@@ -43,11 +62,18 @@ resource "null_resource" "setup_metallb" {
 resource "null_resource" "config_metallb" {
   depends_on = [ null_resource.setup_metallb ]
 
+  triggers = {
+    kubectl     = local.kubectl
+    host        = var.ssh_config.host
+    user        = var.ssh_config.user
+    private_key = var.ssh_config.private_key
+  }
+
   connection {
     type        = "ssh"
-    user        = "root"
-    host        = var.ssh_config.host
-    private_key = var.ssh_config.private_key
+    user        = self.triggers.user
+    host        = self.triggers.host
+    private_key = self.triggers.private_key
   }
 
   provisioner "file" {
@@ -61,7 +87,15 @@ resource "null_resource" "config_metallb" {
 
   provisioner "remote-exec" {
     inline = [
-      format("%s apply -f /tmp/metallb-config.yaml", local.kubectl)
+      format("%s apply -f /tmp/metallb-config.yaml", self.triggers.kubectl)
+    ]
+  }
+
+  provisioner "remote-exec" {
+    when       = destroy
+    on_failure = continue
+    inline = [
+      format("%s delete -f /tmp/metallb-config.yaml", self.triggers.kubectl)
     ]
   }
 }

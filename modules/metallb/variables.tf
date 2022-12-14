@@ -3,6 +3,7 @@ variable ssh_config {
   description = "Connection details to apply configuration"
   type = object({
     host = string
+    user = optional(string)
     private_key = string
   })
 }

@@ -1,8 +1,9 @@
 locals {
 
     ssh_config = {
-        host = var.host
-        private_key = var.private_key
+        host = var.ssh_host
+        user = var.ssh_user
+        private_key = var.ssh_private_key
     }
 
     addon_context = {

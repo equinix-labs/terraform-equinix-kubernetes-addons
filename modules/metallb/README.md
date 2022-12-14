@@ -31,7 +31,7 @@ module "terraform-equinix-kubernetes-addons" {
 
     address_pools = [
       {
-        "name" = "sandbox",
+        "name" = "sandbox"
         "request" = {
           "quantity" = 1  #by default 1. The number of allocated /32 addresses, power of 2, up to 256
           //TODO "familiy" = ipv4
@@ -44,6 +44,7 @@ module "terraform-equinix-kubernetes-addons" {
         "addresses" = {
           "quantity" = 4
         }
+        "addresses" = []
       }
     ]
 
