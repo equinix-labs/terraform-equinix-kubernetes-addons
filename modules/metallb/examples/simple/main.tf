@@ -1,3 +1,7 @@
+provider "equinix" {
+  auth_token = var.auth_token
+}
+
 module "terraform-equinix-kubernetes-addons" {
   source = "../../../../"
 

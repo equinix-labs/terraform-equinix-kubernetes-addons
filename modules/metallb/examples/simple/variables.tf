@@ -1,5 +1,11 @@
+variable "auth_token" {
+  type        = string
+  description = "Equinix Metal API key"
+  sensitive   = true
+}
+
 variable "project" {
-  description = "Equinix project"
+  description = "Equinix Metal project"
   type        = string
 }
 
@@ -11,6 +17,7 @@ variable "host" {
 variable "user" {
   type        = string
   description = "The username of the ssh key used to connect to the server defined in host"
+  default     = "root"
 }
 
 variable "private_key_path" {
