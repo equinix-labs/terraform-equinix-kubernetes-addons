@@ -7,4 +7,8 @@ terraform {
       version = ">= 1.11.1"
     }
   }
+
+  provider_meta "equinix" {
+    module_name = "terraform-equinix-kubernetes-addons metallb"
+  }
 }

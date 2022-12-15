@@ -1,0 +1,26 @@
+
+site_name: Equinix Kubernetes Addons for Terraform
+repo_name: "equinix-labs/terraform-equinix-kubernetes-addons"
+repo_url: "https://github.com/equinix-labs/terraform-equinix-kubernetes-addons"
+edit_uri: "edit/main/docs/"
+docs_dir: "docs"
+theme:
+  name: material
+  features:
+    - tabs
+markdown_extensions:
+  - def_list
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+plugins:
+  - search
+  - awesome-pages
+  - include-markdown
+extra:
+  version:
+    provider: mike

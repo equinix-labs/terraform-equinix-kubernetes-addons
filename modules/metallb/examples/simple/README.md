@@ -1,6 +1,6 @@
 ## Simple Example
 
-This example demonstrates usage of the Equinix Template module.
+This example demonstrates usage of the Metallb addon module.
 
 ## Usage
 
@@ -8,4 +8,3 @@ This example demonstrates usage of the Equinix Template module.
 terraform init
 terraform apply
 ```
-
