@@ -5,6 +5,7 @@ module "terraform-equinix-kubernetes-addons" {
   equinix_metro   = "LD"
 
   ssh_host        = var.host
+  ssh_user        = var.user
   ssh_private_key = file(var.private_key_path)
 
   kubeconfig_remote_path = var.kubeconfig_remote_path
