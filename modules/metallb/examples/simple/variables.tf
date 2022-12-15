@@ -8,6 +8,11 @@ variable "host" {
   description = "The address of the server from where to perform kubectl installations and changes"
 }
 
+variable "user" {
+  type        = string
+  description = "The username of the ssh key used to connect to the server defined in host"
+}
+
 variable "private_key_path" {
   type        = string
   description = "Path to an SSH key to use for the connection"
