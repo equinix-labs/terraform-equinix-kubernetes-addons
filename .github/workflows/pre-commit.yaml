@@ -1,0 +1,49 @@
+name: pre-commit
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.tf'
+      - '**.yml'
+      - '**.yaml'
+
+env:
+  TERRAFORM_VERSION: 1.0.0
+  TERRAFORM_DOCS_VERSION: v0.16.0
+  # TFLINT_VERSION: v0.43.0  #let's try to use the latest default version unless we find some limitation
+  # TFSEC_VERSION: v1.28.1  #let's try to use the latest default version unless we find some limitation
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pre-commit:
+    name: TF pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - '**/*.tf'
+
+      - name: Config Terraform plugin cache
+        if: steps.changes.outputs.src== 'true'
+        run: mkdir --parents ${{ env.TERRAFORM_DOCS_VERSION }}
+
+      - name: Pre-commit Terraform ${{ env.TERRAFORM_VERSION }}
+        uses: ./pre-commit
+        if: steps.changes.outputs.src== 'true'
+        with:
+          terraform-version: ${{ env.TERRAFORM_VERSION }}
+          terraform-docs-version: ${{ env.TERRAFORM_DOCS_VERSION }}
+          tflint-version: ${{ env.TFLINT_VERSION }}
+          install-tfsec: 'true'
+          tfsec-version: ${{ env.TFSEC_VERSION }}
