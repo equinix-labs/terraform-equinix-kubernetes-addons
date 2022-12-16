@@ -21,8 +21,7 @@ module "terraform-equinix-kubernetes-addons" {
 
   kubeconfig_remote_path = var.kubeconfig_remote_path
 
-  enable_:ADDON_NAME: = true
+  enable_{ADDON_NAME} = true
 
-  :ADDON_NAME:_config = {}
-
+  {ADDON_NAME}_config = {}
 }

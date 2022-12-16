@@ -14,7 +14,7 @@ terraform {
   required_providers {
     equinix = {
       source  = "equinix/equinix"
-      version = ">= :EQUINIX_PROVIDER_VERSION:"
+      version = ">= {EQUINIX_PROVIDER_VERSION}"
     }
   }
 }

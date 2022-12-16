@@ -9,7 +9,7 @@ usage()
     echo ""
     echo "Usage:"
     echo "Run './generate_addon_structure.sh [ -n NAME ] [ -w DOCS_WEBSITE ]'."
-    echo " "
+    echo ""
     echo "(-h)       Show usage and brief help"
     echo "(-n)       (Required) Name of the addon"
     echo "(-w)       (Required) Home page for documentation of the addon"
@@ -59,15 +59,17 @@ function override_template(){
     ## add templates header
     find ./$ADDON_NAME -type f -name "*.tf" -exec perl -pi -e 'print "# TEMPLATE: This file was automatically generated with \`generate_addon_structure.sh\`\n# TEMPLATE: and should be modified as necessary\n" if $. == 1' {} \;
     find ./$ADDON_NAME -type f -iname "*.md" -exec perl -pi -e 'print "<!-- TEMPLATE: This file was automatically generated with `generate_addon_structure.sh` and should be modified as necessary -->\n" if $. == 1' {} \;
-    ## add/replace addon_template files
-    rsync -avP ./addon_template/ ./$ADDON_NAME/
+    ## add/replace addon_specific_templates files
+    rsync -avP ./addon_specific_templates/ ./$ADDON_NAME/
     ## get latest equinix provider version
     get_equinix_provider_latest_release
     ## replace variables
-    grep -rl ":EQUINIX_PROVIDER_VERSION:" ./$ADDON_NAME/ | xargs sed -i "" "s/:EQUINIX_PROVIDER_VERSION:/${EQUINIX_PROVIDER_VERSION}/g"
-    grep -rl ":ADDON_NAME:" ./$ADDON_NAME/ | xargs sed -i "" "s/:ADDON_NAME:/${ADDON_NAME}/g"
-    grep -rl ":ADDON_NAME^:" ./$ADDON_NAME/ | xargs sed -i "" "s/:ADDON_NAME^:/${CAPITALIZED_ADDON_NAME}/g"
-    grep -rl ":ADDON_WEBSITE_URL:" ./$ADDON_NAME/ | xargs sed -i "" "s/:ADDON_WEBSITE_URL:/${ADDON_WEBSITE_URL}/g"
+    grep -rl "{EQUINIX_PROVIDER_VERSION}" ./$ADDON_NAME/ | xargs sed -i "" "s/{EQUINIX_PROVIDER_VERSION}/${EQUINIX_PROVIDER_VERSION}/g"
+    grep -rl "{ADDON_NAME}" ./$ADDON_NAME/ | xargs sed -i "" "s/{ADDON_NAME}/${ADDON_NAME}/g"
+    grep -rl "{ADDON_NAME^}" ./$ADDON_NAME/ | xargs sed -i "" "s/{ADDON_NAME^}/${CAPITALIZED_ADDON_NAME}/g"
+    grep -rl "{ADDON_WEBSITE_URL}" ./$ADDON_NAME/ | xargs sed -i "" "s/{ADDON_WEBSITE_URL}/${ADDON_WEBSITE_URL}/g"
+    ## remove templates extension
+    find ./$ADDON_NAME -depth -name "*.tpl" -exec sh -c 'mv "$1" "${1%.*}"' _ {} \;
 }
 
 function move_template(){
@@ -131,8 +133,17 @@ ADDON_NAME=$(echo $ADDON_NAME | tr " " "-" | tr -dc '[:alnum:]-' | tr '[:upper:]
 
 echo "Checking if ${ADDON_NAME} addon already exists..."
 check_addon
-echo "Building ${ADDON_NAME} addon structure..."
+echo "Building ${ADDON_NAME} addon layout..."
 setup_addon
 echo "Enabling ${ADDON_NAME} addon in main module..."
 add_addon_to_module
-echo "${ADDON_NAME} addon structure generation completed"
+echo "${ADDON_NAME} addon layout successfully created!"
+PROJECT_DIR=$(cd ./../ && basename "`pwd`")
+echo ""
+echo "Modified project files:"
+echo " - $PROJECT_DIR/main.tf"
+echo " - $PROJECT_DIR/outputs.tf"
+echo " - $PROJECT_DIR/variables.tf"
+echo "New addon's editable files included in:"
+echo " - $PROJECT_DIR/modules/$ADDON_NAME/"
+
