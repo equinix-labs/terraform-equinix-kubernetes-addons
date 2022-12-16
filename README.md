@@ -36,6 +36,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_metallb"></a> [metallb](#module\_metallb) | ./modules/metallb | n/a |
+| <a name="module_longhorn"></a> [longhorn](#module\_longhorn) | ./modules/longhorn | n/a |
 
 ## Resources
 
@@ -46,6 +47,7 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_enable_metallb"></a> [enable\_metallb](#input\_enable\_metallb) | Enable Metallb add-on | `bool` | `false` | no |
+| <a name="input_enable_longhorn"></a> [enable\_longhorn](#input\_enable\_longhorn) | Enable Longhorn add-on | `bool` | `false` | no |
 | <a name="input_equinix_metro"></a> [equinix\_metro](#input\_equinix\_metro) | Equinix metro code | `string` | n/a | yes |
 | <a name="input_equinix_project"></a> [equinix\_project](#input\_equinix\_project) | Equinix project | `string` | n/a | yes |
 | <a name="input_kubeconfig_remote_path"></a> [kubeconfig\_remote\_path](#input\_kubeconfig\_remote\_path) | Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server | `string` | n/a | yes |
@@ -60,4 +62,5 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_metallb"></a> [metallb](#output\_metallb) | n/a |
+| <a name="output_longhorn"></a> [longhorn](#output\_longhorn) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
