@@ -39,11 +39,37 @@ if [ -z "$ADDON_NAME" ] || [ -z "$ADDON_WEBSITE_URL" ]; then
     exit 1
 fi
 
+function print_green(){
+    GREEN='\033[0;32m'
+    echo -e "$GREEN$1"
+}
+
 function check_addon(){
     if [ -d "../modules/$ADDON_NAME" ]; then
         echo "Error: $ADDON_NAME folder already exists!"
         exit 1
     fi
+}
+
+function request_approve(){
+    echo ""
+    echo "##############################################################################"
+    echo "Please,"
+    echo "be advised, that this script uses relative paths and adds content to existing"
+    echo "files." 
+    echo ""
+    echo "You may not move this script to a different directory to ensure the proper"
+    echo "functioning."
+    echo "##############################################################################"
+    echo ""
+    read -r -p "Do you want to continue? [y/N] " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            ;;
+        *)
+            exit 0
+            ;;
+    esac
 }
 
 function clone_template() {
@@ -79,7 +105,7 @@ function move_template(){
 function get_equinix_provider_latest_release() {
     EQUINIX_PROVIDER_REPO="equinix/terraform-provider-equinix"
     EQUINIX_PROVIDER_VERSION=$(curl --silent "https://api.github.com/repos/$EQUINIX_PROVIDER_REPO/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-    echo "using latest Equinix terraform provider version is ${EQUINIX_PROVIDER_VERSION}"
+    echo "Using latest Equinix terraform provider version ${EQUINIX_PROVIDER_VERSION}"
 }
 
 #Adds addon specific structures to the repo
@@ -89,9 +115,18 @@ function setup_addon() {
     move_template
 }
 
+function ensure_new_line_to_file_end() {
+    if ! [[ $(tail -c1 "$1" | wc -l) -gt 0 ]]; then
+        echo "" >> $1
+    fi
+}
+
 #Link addon to main module
 function add_addon_to_module() {
+
+    ensure_new_line_to_file_end ./../variables.tf
     cat <<EOT >> ./../variables.tf
+
 variable "enable_${ADDON_NAME}" {
     type        = bool
     description = "Enable ${ADDON_NAME} add-on"
@@ -103,10 +138,11 @@ variable "${ADDON_NAME}_config" {
     description = "Configuration for ${ADDON_NAME} add-on"
     default     = {}
 }
-
 EOT
 
+    ensure_new_line_to_file_end ./../main.tf
     cat <<EOT >> ./../main.tf
+
 module "${ADDON_NAME}" {
     count  = var.enable_${ADDON_NAME} ? 1 : 0
     source = "./modules/${ADDON_NAME}"
@@ -115,17 +151,16 @@ module "${ADDON_NAME}" {
     addon_config  = var.${ADDON_NAME}_config
     addon_context = local.addon_context
 }
-
 EOT
 
+    ensure_new_line_to_file_end ./../outputs.tf
     cat <<EOT >> ./../outputs.tf
+
 output "${ADDON_NAME}" {
     value = module.${ADDON_NAME}
 }
-
 EOT
 }
-
 
 #sanitize name
 CAPITALIZED_ADDON_NAME=`echo ${ADDON_NAME:0:1} | tr  '[a-z]' '[A-Z]'`${ADDON_NAME:1}
@@ -133,17 +168,19 @@ ADDON_NAME=$(echo $ADDON_NAME | tr " " "-" | tr -dc '[:alnum:]-' | tr '[:upper:]
 
 echo "Checking if ${ADDON_NAME} addon already exists..."
 check_addon
+request_approve
 echo "Building ${ADDON_NAME} addon layout..."
 setup_addon
 echo "Enabling ${ADDON_NAME} addon in main module..."
 add_addon_to_module
-echo "${ADDON_NAME} addon layout successfully created!"
+echo ""
+print_green "${ADDON_NAME} addon layout successfully created!"
 PROJECT_DIR=$(cd ./../ && basename "`pwd`")
 echo ""
-echo "Modified project files:"
-echo " - $PROJECT_DIR/main.tf"
-echo " - $PROJECT_DIR/outputs.tf"
-echo " - $PROJECT_DIR/variables.tf"
-echo "New addon's editable files included in:"
-echo " - $PROJECT_DIR/modules/$ADDON_NAME/"
-
+print_green "Modified project files:"
+print_green "- $PROJECT_DIR/main.tf"
+print_green "- $PROJECT_DIR/outputs.tf"
+print_green "- $PROJECT_DIR/variables.tf"
+echo ""
+print_green "New folder with addon's editable files:"
+print_green "- $PROJECT_DIR/modules/$ADDON_NAME/"
