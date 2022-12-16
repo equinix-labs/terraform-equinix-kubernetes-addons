@@ -11,8 +11,8 @@ usage()
     echo "Run './generate_addon_structure.sh [ -n NAME ] [ -w DOCS_WEBSITE ]'."
     echo ""
     echo "(-h)       Show usage and brief help"
-    echo "(-n)       (Required) Name of the addon"
-    echo "(-w)       (Required) Home page for documentation of the addon"
+    echo "(-n)       (Required) Name of the addon/kubernetes plugin"
+    echo "(-w)       (Required) Addon official documentation home page URL"
 }
 
 while getopts ":n:w:" opt; do
