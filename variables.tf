@@ -14,6 +14,14 @@ variable "enable_longhorn" {
   description = "Enable Longhorn add-on"
   default     = false
 }
+variable "longhorn_config" {
+  type        = any
+  description = "Configuration for Longhorn add-on"
+  default = {
+    longhorn_name      = "longhorn"
+    longhorn_namespace = "longhorn-system"
+  }
+}
 
 variable "ssh_host" {
   type        = string
@@ -35,10 +43,6 @@ variable "ssh_private_key" {
 variable "kubeconfig_remote_path" {
   type        = string
   description = "Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server"
-}
-variable "kubeconfig_local_path" {
-  type        = string
-  description = "Depending on your setup, you may need to specify the path to the kubeconfig file locally"
 }
 variable "tags" {
   type        = list(string)

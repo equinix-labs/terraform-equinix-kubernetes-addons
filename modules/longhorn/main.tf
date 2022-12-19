@@ -1,6 +1,6 @@
 resource "helm_release" "longhorn" {
-  name             = "longhorn"
-  namespace        = "longhorn-system"
+  name             = var.addon_config.longhorn_name
+  namespace        = var.addon_config.longhorn_namespace
   create_namespace = true
   repository       = "https://charts.longhorn.io"
   chart            = "longhorn"
