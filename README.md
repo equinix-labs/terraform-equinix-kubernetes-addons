@@ -11,13 +11,13 @@
 This repository contains a collection of Terraform modules (addons) to help automate the deploy and management of Kubernetes components in Kubernetes environments running on [Equinix Metal](https://deploy.equinix.com/) baremetal.
 
 ## Getting Started
-//TODO
+//TODO(ocobleseqx)
 
 ## Usage
-//TODO
+//TODO(ocobleseqx)
 
 ## Examples
-//TODO
+//TODO(ocobleseqx)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -61,6 +61,5 @@ No resources.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_metallb"></a> [metallb](#output\_metallb) | n/a |
-| <a name="output_longhorn"></a> [longhorn](#output\_longhorn) | n/a |
+| <a name="output_metallb"></a> [metallb](#output\_metallb) | MetaLB addon outputs |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -2,7 +2,7 @@ provider "equinix" {
   auth_token = var.metal_auth_token
 }
 
-module "terraform-equinix-kubernetes-addons" {
+module "terraform_equinix_kubernetes_addons" {
   source = "../../../../"
 
   equinix_project = var.project
@@ -22,8 +22,8 @@ module "terraform-equinix-kubernetes-addons" {
         "name" = "sandbox"
         "request" = {
           "quantity" = 1 #The number of allocated /32 addresses, power of 2, up to 256
-          //TODO "familiy" = ipv4
-          //TODO "type" = public/global
+          # TODO(ocoblesqx): "familiy" = ipv4
+          # TODO(ocoblesqx): "type" = public/global
         }
         # "addresses" = ["192.168.10.0/24", "192.168.9.1-192.168.9.", "fc00:f853:0ccd:e799::/124"]
       },
@@ -41,10 +41,10 @@ module "terraform-equinix-kubernetes-addons" {
     # bgp_peer = {
     #   peer_asn = 65530 #by default 65530. Private Equinix Metal ToR
     #   my_asn = 65000 #by default 65000. Private Equinix Metal Server. Working with Calico may require change the asn https://github.com/equinix-labs/terraform-metal-kubernetes-bgp/blob/main/images/network-arch.png
-    #   //TODO if FRR mode supported let define bdf_profile
+    #   # TODO(ocoblesqx): if FRR mode supported let define bdf_profile
     # }
 
-    //TODO
+    # TODO(ocoblesqx):
     # bgp_advertisement = {
     #   node_selector_hostnames = ["node1", "controller1"] #Announcing the Service from a subset of nodes
     # }

@@ -1,6 +1,4 @@
 output "metallb" {
+  description = "MetaLB addon outputs"
   value = module.metallb
-}
-output "longhorn" {
-  value = module.longhorn
 }
