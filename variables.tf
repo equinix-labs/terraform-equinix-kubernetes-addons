@@ -18,10 +18,6 @@ variable "enable_rook" {
 variable "rook_config" {
   type        = any
   description = "Configuration for Rook add-on"
-  default = {
-    rook_name      = "rook-ceph"
-    rook_namespace = "rook-ceph"
-  }
 }
 
 variable "ssh_host" {
