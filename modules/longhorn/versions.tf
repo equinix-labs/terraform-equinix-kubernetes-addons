@@ -6,8 +6,11 @@ terraform {
       source  = "equinix/equinix"
       version = ">= 1.11.1"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = ">= 2.8.0"
+    }
   }
-
   provider_meta "equinix" {
     module_name = "terraform-equinix-kubernetes-addons longhorn"
   }
