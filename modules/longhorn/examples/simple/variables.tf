@@ -35,15 +35,3 @@ variable "kubeconfig_remote_path" {
   description = "Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server"
   default     = ""
 }
-
-variable "longhorn_name" {
-  type        = string
-  description = "Release name helm uses for the longhorn chart"
-  default     = "longhorn"
-}
-
-variable "longhorn_namespace" {
-  type        = string
-  description = "Namespace helm installs the longhorn chart into"
-  default     = "longhorn-system"
-}
