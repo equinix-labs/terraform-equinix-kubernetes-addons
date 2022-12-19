@@ -21,7 +21,7 @@ For more details checkout [Rook](https://rook.github.io/docs/rook/latest-release
 
 | Name | Version |
 |------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.8.0 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | >= 2.8.0 |
 
 ## Modules
 

@@ -9,4 +9,3 @@ This example demonstrates usage of the Equinix Template module.
 terraform init
 terraform apply
 ```
-
