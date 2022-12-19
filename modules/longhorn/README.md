@@ -19,7 +19,7 @@ For more details checkout [Longhorn](https://longhorn.io/docs/) docs.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.8.0 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | >= 2.8.0 |
 
 ## Modules
 
