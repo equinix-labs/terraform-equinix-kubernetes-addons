@@ -1,7 +1,11 @@
 provider "equinix" {
   auth_token = var.metal_auth_token
 }
-
+provider "helm" {
+  kubernetes {
+    config_path = var.kubeconfig_local_path
+  }
+}
 module "terraform-equinix-kubernetes-addons" {
   source = "../../../../"
 
@@ -13,8 +17,10 @@ module "terraform-equinix-kubernetes-addons" {
   ssh_private_key = file(var.private_key_path)
 
   kubeconfig_remote_path = var.kubeconfig_remote_path
-  kubeconfig_local_path  = var.kubeconfig_local_path
 
   enable_longhorn = true
-
+  longhorn_config = {
+    longhorn_name      = "longhorn"
+    longhorn_namespace = "longhorn-system"
+  }
 }

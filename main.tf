@@ -1,8 +1,3 @@
-provider "helm" {
-  kubernetes {
-    config_path = var.kubeconfig_local_path
-  }
-}
 module "metallb" {
   count  = var.enable_metallb ? 1 : 0
   source = "./modules/metallb"
@@ -12,6 +7,7 @@ module "metallb" {
   addon_context = local.addon_context
 }
 module "longhorn" {
-  count  = var.enable_longhorn ? 1 : 0
-  source = "./modules/longhorn"
+  count        = var.enable_longhorn ? 1 : 0
+  source       = "./modules/longhorn"
+  addon_config = var.longhorn_config
 }
