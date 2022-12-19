@@ -8,14 +8,14 @@
 # TEMPLATE: https://www.terraform.io/docs/language/values/variables.html
 # TEMPLATE: https://www.terraform.io/docs/language/expressions/types.html
 #
-variable "auth_token" {
+variable "metal_auth_token" {
   type        = string
-  description = "Equinix Metal API key"
+  description = "Equinix Metal API key. Leave it empty to use your TF_VAR_METAL_AUTH_TOKEN / METAL_AUTH_TOKEN environment variable"
   sensitive   = true
 }
 
-variable "project" {
-  description = "Equinix project"
+variable "metal_project_id" {
+  description = "Equinix Metal project ID"
   type        = string
 }
 

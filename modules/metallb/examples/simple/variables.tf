@@ -1,11 +1,11 @@
-variable "auth_token" {
+variable "metal_auth_token" {
   type        = string
-  description = "Equinix Metal API key"
+  description = "Equinix Metal API key. Leave it empty to use your METAL_AUTH_TOKEN / TF_VAR_metal_auth_token environment variable"
   sensitive   = true
 }
 
-variable "project" {
-  description = "Equinix Metal project"
+variable "metal_project_id" {
+  description = "Equinix Metal project ID"
   type        = string
 }
 
