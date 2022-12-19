@@ -1,10 +1,8 @@
-variable "addon_config" {
-  description = "Add-on configuration for Metallb"
+variable "longhorn_config" {
+  description = "Add-on configuration for Longhorn add-on"
   type        = any
-  //TODO should we define all options here? 
-  # type = object({
-  #   lb_services_name = list(string)
-  #   lb_bgp_customer_asn = number
-  # })
-  default = {}
+  default = {
+    longhorn_name      = "longhorn"
+    longhorn_namespace = "longhorn-system"
+  }
 }

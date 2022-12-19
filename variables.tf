@@ -17,10 +17,6 @@ variable "enable_longhorn" {
 variable "longhorn_config" {
   type        = any
   description = "Configuration for Longhorn add-on"
-  default = {
-    longhorn_name      = "longhorn"
-    longhorn_namespace = "longhorn-system"
-  }
 }
 
 variable "ssh_host" {
