@@ -13,13 +13,14 @@ For more details checkout [MetalLB](https://metallb.universe.tf/) docs.
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
 | <a name="requirement_equinix"></a> [equinix](#requirement\_equinix) | >= 1.11.1 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.2.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_equinix"></a> [equinix](#provider\_equinix) | >= 1.11.1 |
-| <a name="provider_null"></a> [null](#provider\_null) | n/a |
+| <a name="provider_null"></a> [null](#provider\_null) | >= 3.2.1 |
 
 ## Modules
 
@@ -45,5 +46,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_ip_address_pools"></a> [ip\_address\_pools](#output\_ip\_address\_pools) | n/a |
+| <a name="output_ip_address_pools"></a> [ip\_address\_pools](#output\_ip\_address\_pools) | blocks IP addresses of created ipaddresspool.metallb.io resources |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
