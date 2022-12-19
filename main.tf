@@ -14,7 +14,4 @@ module "metallb" {
 module "longhorn" {
   count  = var.enable_longhorn ? 1 : 0
   source = "./modules/longhorn"
-
-  ssh_config    = local.ssh_config
-  addon_context = local.addon_context
 }
