@@ -1,3 +1,4 @@
 output "metallb" {
-  value = module.metallb
+  description = "MetaLB addon outputs"
+  value       = module.metallb
 }
