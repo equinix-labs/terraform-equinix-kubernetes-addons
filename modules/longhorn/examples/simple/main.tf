@@ -6,7 +6,7 @@ provider "helm" {
     config_path = var.kubeconfig_local_path
   }
 }
-module "terraform-equinix-kubernetes-addons" {
+module "terraform_equinix_kubernetes-addons" {
   source = "../../../../"
 
   equinix_project = var.metal_project_id
