@@ -1,3 +1,8 @@
+provider "helm" {
+  kubernetes {
+    config_path = var.kubeconfig_local_path
+  }
+}
 module "metallb" {
   count  = var.enable_metallb ? 1 : 0
   source = "./modules/metallb"
@@ -10,6 +15,4 @@ module "rook" {
   count  = var.enable_rook ? 1 : 0
   source = "./modules/rook"
 
-  ssh_config    = local.ssh_config
-  addon_context = local.addon_context
 }
