@@ -15,4 +15,5 @@ module "rook" {
   count  = var.enable_rook ? 1 : 0
   source = "./modules/rook"
 
+  rook_config = var.rook_config
 }

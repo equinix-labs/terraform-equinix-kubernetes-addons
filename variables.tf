@@ -14,6 +14,16 @@ variable "enable_rook" {
   description = "Enable Rook add-on"
   default     = false
 }
+
+variable "rook_config" {
+  type        = any
+  description = "Configuration for Rook add-on"
+  default = {
+    rook_name      = "rook-ceph"
+    rook_namespace = "rook-ceph"
+  }
+}
+
 variable "ssh_host" {
   type        = string
   description = "The address of the server from where to perform kubectl installations and changes"

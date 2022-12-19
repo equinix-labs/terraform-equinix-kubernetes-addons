@@ -14,6 +14,10 @@ module "terraform-equinix-kubernetes-addons" {
   kubeconfig_local_path  = var.kubeconfig_local_path
 
   enable_rook = true
+  rook_config = {
+    rook_name      = "rook-ceph"
+    rook_namespace = "rook-ceph"
+  }
 }
 provider "equinix" {
   auth_token = var.auth_token

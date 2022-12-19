@@ -8,8 +8,8 @@
 # TEMPLATE: and dependency inversion (https://www.terraform.io/docs/language/modules/develop/composition.html).
 
 resource "helm_release" "rook" {
-  name             = "rook-ceph"
-  namespace        = "rook-ceph"
+  name             = var.rook_config.rook_name
+  namespace        = var.rook_config.rook_namespace
   create_namespace = true
   repository       = "https://charts.rook.io/release"
   chart            = "rook-ceph"

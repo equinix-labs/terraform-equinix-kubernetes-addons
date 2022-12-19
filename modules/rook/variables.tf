@@ -7,3 +7,11 @@
 # TEMPLATE: https://www.terraform.io/docs/language/values/variables.html
 # TEMPLATE: https://www.terraform.io/docs/language/expressions/types.html
 #
+variable "rook_config" {
+  description = "Add-on configuration for Rook add-on"
+  type        = any
+  default = {
+    rook_name      = "rook-ceph"
+    rook_namespace = "rook-ceph"
+  }
+}
