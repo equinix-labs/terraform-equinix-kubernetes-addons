@@ -1,5 +1,5 @@
 provider "equinix" {
-  auth_token = var.auth_token
+  auth_token = var.metal_auth_token
 }
 
 module "terraform-equinix-kubernetes-addons" {
