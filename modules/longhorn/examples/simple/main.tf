@@ -1,11 +1,7 @@
-provider "equinix" {
-  auth_token = var.metal_auth_token
-}
-
 module "terraform-equinix-kubernetes-addons" {
   source = "../../../../"
 
-  equinix_project = var.project
+  equinix_project = var.metal_project_id
   equinix_metro   = "LD"
 
   ssh_host        = var.host
