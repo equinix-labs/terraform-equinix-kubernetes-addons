@@ -1,6 +1,5 @@
 #!/bin/bash -e
 
-unset -v EQUINIX_PROVIDER_VERSION
 unset -v ADDON_NAME
 unset -v ADDON_WEBSITE_URL
 
@@ -40,8 +39,8 @@ if [ -z "$ADDON_NAME" ] || [ -z "$ADDON_WEBSITE_URL" ]; then
 fi
 
 function print_green(){
-    GREEN='\033[0;32m'
-    echo -e "$GREEN$1"
+    local green='\033[0;32m'
+    echo -e "$green$1"
 }
 
 function check_addon(){
@@ -78,7 +77,7 @@ function clone_template() {
 
 function override_template(){
     ## remove not required files
-    files_rm=(".github/" ".gitignore" ".terraform.lock.hcl" "CODEOWNERS" "LICENSE")
+    local files_rm=(".github/" ".gitignore" ".terraform.lock.hcl" "CODEOWNERS" "LICENSE")
     for f in ${files_rm[@]}; do
         rm -rf ./$ADDON_NAME/$f
     done
@@ -93,7 +92,7 @@ function override_template(){
     grep -rl "{EQUINIX_PROVIDER_VERSION}" ./$ADDON_NAME/ | xargs sed -i "" "s/{EQUINIX_PROVIDER_VERSION}/${EQUINIX_PROVIDER_VERSION}/g"
     grep -rl "{ADDON_NAME}" ./$ADDON_NAME/ | xargs sed -i "" "s/{ADDON_NAME}/${ADDON_NAME}/g"
     grep -rl "{ADDON_NAME^}" ./$ADDON_NAME/ | xargs sed -i "" "s/{ADDON_NAME^}/${CAPITALIZED_ADDON_NAME}/g"
-    grep -rl "{ADDON_WEBSITE_URL}" ./$ADDON_NAME/ | xargs sed -i "" "s/{ADDON_WEBSITE_URL}/${ADDON_WEBSITE_URL}/g"
+    grep -rl "{ADDON_WEBSITE_URL}" ./$ADDON_NAME/ | xargs sed -i "" "s|{ADDON_WEBSITE_URL}|${ADDON_WEBSITE_URL}|g"
     ## remove templates extension
     find ./$ADDON_NAME -depth -name "*.tpl" -exec sh -c 'mv "$1" "${1%.*}"' _ {} \;
 }
@@ -103,8 +102,9 @@ function move_template(){
 }
 
 function get_equinix_provider_latest_release() {
-    EQUINIX_PROVIDER_REPO="equinix/terraform-provider-equinix"
-    EQUINIX_PROVIDER_VERSION=$(curl --silent "https://api.github.com/repos/$EQUINIX_PROVIDER_REPO/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    local equinix_provider_repo="equinix/terraform-provider-equinix"
+    local equinix_tag_version=$(curl --silent "https://api.github.com/repos/$equinix_provider_repo/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    EQUINIX_PROVIDER_VERSION=${equinix_tag_version#v}
     echo "Using latest Equinix terraform provider version ${EQUINIX_PROVIDER_VERSION}"
 }
 
@@ -123,7 +123,6 @@ function ensure_new_line_to_file_end() {
 
 #Link addon to main module
 function add_addon_to_module() {
-
     ensure_new_line_to_file_end ./../variables.tf
     cat <<EOT >> ./../variables.tf
 
@@ -162,9 +161,9 @@ output "${ADDON_NAME}" {
 EOT
 }
 
-#sanitize name
+#sanitize vars
 CAPITALIZED_ADDON_NAME=`echo ${ADDON_NAME:0:1} | tr  '[a-z]' '[A-Z]'`${ADDON_NAME:1}
-ADDON_NAME=$(echo $ADDON_NAME | tr " " "-" | tr -dc '[:alnum:]-' | tr '[:upper:]' '[:lower:]')
+ADDON_NAME=$(echo $ADDON_NAME | tr '[ _]' '-' | tr -dc '[:alnum:]-' | tr '[:upper:]' '[:lower:]')
 
 echo "Checking if ${ADDON_NAME} addon already exists..."
 check_addon
