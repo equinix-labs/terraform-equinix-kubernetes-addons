@@ -1,74 +1,46 @@
-<!-- TEMPLATE: This file was automatically generated with `generate_addon_structure.sh` and should be modified as necessary -->
-## terraform-equinix-template
+## Rook
 
-<!-- TEMPLATE: Review all "TEMPLATE" comments and remove them when applied. -->
-<!-- TEMPLATE: replace "template" with the name of your project. The prefix "terraform-equinix-" informs the Terraform registry that this project is a Terraform module associated with the Equinix provider, Oreserve this prefix.  "terraform-metal-" may also be used for Equinix Metal modules, but "terraform-equinix-" will work too. -->
-[![Experimental](https://img.shields.io/badge/Stability-Experimental-red.svg)](https://github.com/equinix-labs/standards#about-uniform-standards)
-[![terraform](https://github.com/equinix-labs/terraform-equinix-template/actions/workflows/integration.yaml/badge.svg)](https://github.com/equinix-labs/terraform-equinix-template/actions/workflows/integration.yaml)
+Rook is an open source cloud-native storage orchestrator, providing the platform, framework, and support for Ceph storage to natively integrate with cloud-native environments.
 
-`terraform-equinix-template` is a minimal Terraform module that utilizes [Terraform providers for Equinix](https://registry.terraform.io/namespaces/equinix) to provision digital infrastructure and demonstrate higher level integrations.
+This module installs rook using the rook-ceph helm chart.
+
+For more details checkout [Rook](https://rook.github.io/docs/rook/latest-release/Getting-Started/intro/) docs.
 
 <!-- TEMPLATE: Insert an image here of the infrastructure diagram. You can generate a starting image using instructions found at https://www.terraform.io/docs/cli/commands/graph.html#generating-images -->
 
-### Usage
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
-This project is experimental and supported by the user community. Equinix does not provide support for this project.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_equinix"></a> [equinix](#requirement\_equinix) | >= 1.11.1 |
 
-Install Terraform using the official guides at <https://learn.hashicorp.com/tutorials/terraform/install-cli>.
+## Providers
 
-This project may be forked, cloned, or downloaded and modified as needed as the base in your integrations and deployments.
+| Name | Version |
+|------|---------|
+| <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
 
-This project may also be used as a [Terraform module](https://learn.hashicorp.com/collections/terraform/modules).
+## Modules
 
-To use this module in a new project, create a file such as:
+No modules.
 
-```hcl
-# main.tf
-terraform {
-  required_providers {
-    equinix = {
-      source = "equinix/equinix"
-    }
-    metal = {
-      source = "equinix/metal"
-    }
-}
+## Resources
 
-module "example" {
-  source = "github.com/equinix-labs/template"
-  # TEMPLATE: replace "template" with the name of the repo after the terraform-equinix- or terraform-metal- prefix.
+| Name | Type |
+|------|------|
+| [helm_release.rook](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 
-  # Published modules can be sourced as:
-  # source = "equinix-labs/template/equinix"
-  # See https://www.terraform.io/docs/registry/modules/publish.html for details.
+## Inputs
 
-  # version = "0.1.0"
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_addon_config"></a> [addon\_config](#input\_addon\_config) | Add-on configuration for Longhorn | `any` | `{}` | no |
+| <a name="input_addon_context"></a> [addon\_context](#input\_addon\_context) | Input context for the addon | <pre>object({<br>    equinix_project        = string<br>    equinix_metro          = string<br>    kubeconfig_remote_path = string<br>  })</pre> | n/a | yes |
+| <a name="input_ssh_config"></a> [ssh\_config](#input\_ssh\_config) | Connection details to apply configuration | <pre>object({<br>    host        = string<br>    user        = optional(string)<br>    private_key = string<br>  })</pre> | n/a | yes |
 
-  # TEMPLATE: insert required variables here
-}
-```
+## Outputs
 
-Run `terraform init -upgrade` and `terraform apply`.
-
-<!-- TEMPLATE: Expand this section with any additional information or requirements. -->
-
-#### Variables
-
-|     Variable Name      |  Type   |        Default Value        | Description                                             |
-| :--------------------: | :-----: | :-------------------------: | :------------------------------------------------------ |
-|                        |         |                             |                                                         |
-
-<!-- TEMPLATE: If published, remove the table and use the following: See <https://registry.terraform.io/modules/equinix-labs/template/equinix/latest?tab=inputs> for a description of all variables. -->
-
-#### Outputs
-
-|     Variable Name      |  Type   | Description                                             |
-| :--------------------: | :-----: | :------------------------------------------------------ |
-|                        |         |                                                         |
-
-<!-- TEMPLATE: If published, remove the table and use the following: See <https://registry.terraform.io/modules/equinix-labs/template/equinix/latest?tab=outputs> for a description of all outputs. -->
-
-### Examples
-
-- [examples/simple](examples/simple/)
-
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
