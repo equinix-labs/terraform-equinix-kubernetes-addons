@@ -19,7 +19,7 @@ inputs:
   install-tfsec:
     description: Install tfsec for pre-commit
     required: false
-    default: 'false'
+    default: 'true'
   tfsec-version:
     description: Version of tfsec to install when `install-tfsec` is true
     required: false
@@ -50,9 +50,9 @@ runs:
         sudo unzip -qq tflint.zip tflint -d /usr/bin/
         rm tflint.zip 2> /dev/null
         if [[ "${{ inputs.install-tfsec }}" == "true" ]]; then
-          curl -sSLo ./tfsec.tar.gz https://github.com/aquasecurity/tfsec/releases/download/v${{ inputs.tfsec-version }}/tfsec_${{ inputs.tfsec-version }}_$(uname)_amd64.tar.gz
-          sudo tar -xzf tfsec.tar.gz -C /usr/bin/ tfsec tfsec-checkgen
-          rm tfsec.tar.gz 2> /dev/null
+          curl -sSLo ./tfsec https://github.com/aquasecurity/tfsec/releases/download/${{ inputs.tfsec-version }}/tfsec-$(uname)-amd64
+          chmod +x tfsec
+          sudo mv tfsec /usr/bin/
         fi
     - name: Execute pre-commit
       shell: bash
