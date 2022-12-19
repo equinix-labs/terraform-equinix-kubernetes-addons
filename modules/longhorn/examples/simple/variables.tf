@@ -9,6 +9,11 @@ variable "metal_project_id" {
   type        = string
 }
 
+variable "kubeconfig_local_path" {
+  type        = string
+  description = "Depending on your setup, you may need to specify the path to the kubeconfig file locally"
+}
+
 variable "host" {
   type        = string
   description = "The address of the server from where to perform kubectl installations and changes"
@@ -30,7 +35,15 @@ variable "kubeconfig_remote_path" {
   description = "Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server"
   default     = ""
 }
-variable "kubeconfig_local_path" {
+
+variable "longhorn_name" {
   type        = string
-  description = "Depending on your setup, you may need to specify the path to the kubeconfig file locally"
+  description = "Release name helm uses for the longhorn chart"
+  default     = "longhorn"
+}
+
+variable "longhorn_namespace" {
+  type        = string
+  description = "Namespace helm installs the longhorn chart into"
+  default     = "longhorn-system"
 }
