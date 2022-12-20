@@ -11,7 +11,9 @@ variable "rook_config" {
   description = "Add-on configuration for Rook add-on"
   type        = any
   default = {
-    rook_name      = "rook-ceph"
-    rook_namespace = "rook-ceph"
+    rook-ceph_name              = "rook-ceph"
+    rook-ceph_namespace         = "rook-ceph"
+    rook-ceph-cluster_name      = "rook-ceph-cluster"
+    rook-ceph-cluster_namespace = "rook-ceph"
   }
 }
