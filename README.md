@@ -19,7 +19,7 @@ This repository contains a collection of Terraform modules (addons) to help auto
 ## Examples
 //TODO(ocobleseqx)
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -60,4 +60,4 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_metallb"></a> [metallb](#output\_metallb) | MetaLB addon outputs |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
