@@ -22,3 +22,12 @@ module "rook" {
 
   rook_config = var.rook_config
 }
+
+module "cloud_provider_equinix_metal" {
+  count  = var.enable_cloud_provider_equinix_metal ? 1 : 0
+  source = "./modules/cloud_provider_equinix_metal"
+
+  ssh_config    = local.ssh_config
+  addon_config  = var.cloud_provider_equinix_metal_config
+  addon_context = local.addon_context
+}

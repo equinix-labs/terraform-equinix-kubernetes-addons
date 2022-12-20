@@ -72,3 +72,15 @@ variable "equinix_metro" {
   type        = string
   description = "Equinix metro code"
 }
+
+variable "enable_cloud_provider_equinix_metal" {
+  type        = bool
+  description = "Enable cloudproviderequinixmetal add-on"
+  default     = false
+}
+
+variable "cloud_provider_equinix_metal_config" {
+  type        = any
+  description = "Configuration for cloudproviderequinixmetal add-on"
+  default     = {}
+}
