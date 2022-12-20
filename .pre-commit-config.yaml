@@ -6,9 +6,6 @@ repos:
     ##TODO not sure if terraform validate can be executed against a module since we don't define provider block on them
     ## https://github.com/hashicorp/terraform/issues/28567
     # - id: terraform_validate
-    - id: terraform_docs
-      args:
-        - '--args=--lockfile=false'
     - id: terraform_tflint
       args:
         - '--args=--only=terraform_deprecated_interpolation'
