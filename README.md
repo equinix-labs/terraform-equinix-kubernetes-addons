@@ -10,14 +10,27 @@
 
 This repository contains a collection of Terraform modules (addons) to help automate the deploy and management of Kubernetes components in Kubernetes environments running on [Equinix Metal](https://deploy.equinix.com/) baremetal.
 
-## Getting Started
-//TODO
-
 ## Usage
-//TODO
+
+This project is intended to be used as a Terraform module.
+
+This project may also be forked, cloned, or downloaded and modified as needed as the base in your integrations and deployments.
+
+### Prerequisites
+
+- Have a running Kubernetes cluster running on [Equinix Metal](https://deploy.equinix.com/) baremetal.
+- Install Terraform using the official guides at https://learn.hashicorp.com/tutorials/terraform/install-cli.
+- It may be useful to install [metal-cli](https://github.com/equinix/metal-cli/#installation).
+
+### Steps
+
+Checkout `examples` directory within any of the available modules to define required files and installation steps.
 
 ## Examples
-//TODO
+
+Each module includes an `examples` directory with configuration examples specific to them.
+
+As this project grows and more modules become available, an `examples` directory will be included in the root directory, with blueprints to provision complete solutions.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -61,3 +74,7 @@ No resources.
 |------|-------------|
 | <a name="output_metallb"></a> [metallb](#output\_metallb) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Adding a new Addon
+
+If you are interested in contributing a new addon please check [CONTRIBUTING](CONTRIBUTING.md) for more information and tools available.
