@@ -10,7 +10,7 @@
 #
 variable "metal_auth_token" {
   type        = string
-  description = "Equinix Metal API key. Leave it empty to use your TF_VAR_METAL_AUTH_TOKEN / METAL_AUTH_TOKEN environment variable"
+  description = "Equinix Metal API key. Leave it empty to use your METAL_AUTH_TOKEN / TF_VAR_metal_auth_token environment variable"
   sensitive   = true
 }
 
