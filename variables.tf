@@ -9,6 +9,15 @@ variable "metallb_config" {
   description = "Configuration for Metallb add-on"
   default     = {}
 }
+variable "enable_longhorn" {
+  type        = bool
+  description = "Enable Longhorn add-on"
+  default     = false
+}
+variable "longhorn_config" {
+  type        = any
+  description = "Configuration for Longhorn add-on"
+}
 
 variable "ssh_host" {
   type        = string
@@ -31,7 +40,6 @@ variable "kubeconfig_remote_path" {
   type        = string
   description = "Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server"
 }
-
 variable "tags" {
   type        = list(string)
   description = "Additional tags (e.g. `['k8s`,`production`]"
