@@ -3,9 +3,10 @@ name: generate-terraform-docs
 on:
   push:
     branches:
-      - test-gh-action
+      - generate-terraform-docs-test-branch
     paths:
       - '**.tf'
+
 jobs:
   tf-docs:
     name: TF docs
