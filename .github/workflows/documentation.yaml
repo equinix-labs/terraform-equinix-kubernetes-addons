@@ -46,7 +46,7 @@ jobs:
           branch: ${{ steps.git-branch.outputs.generated_branch }}
           base: 'generate-terraform-docs-test-branch'
           signoff: true
-          delete-branch: false
+          delete-branch: true
 
       # TODO(ocobleseqx): https://github.com/peter-evans/enable-pull-request-automerge
 
