@@ -1,3 +1,9 @@
+variable "test" {
+  type        = bool
+  description = "Enable Metallb add-on"
+  default     = false
+}
+
 variable "enable_metallb" {
   type        = bool
   description = "Enable Metallb add-on"
