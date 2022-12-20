@@ -33,18 +33,20 @@ jobs:
           recursive-path: modules
           args: --sort-by required
           indention: 3
-          git-push: "true"
-          git-commit-message: "terraform-docs: automated action"
-          git-push-sign-off: "true"
+          git-push: "false"
 
       - name: Create Pull Request
         if: steps.terraform-docs.outputs.num_changed != '0'
         uses: peter-evans/create-pull-request@v4
         with:
+          commit-message: 'generate-terraform-docs: automated action'
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           title: 'generate-terraform-docs: automated action'
           branch: ${{ steps.git-branch.outputs.generated_branch }}
           base: 'generate-terraform-docs-test-branch'
-          delete-branch: true
+          signoff: true
+          delete-branch: false
 
       # TODO(ocobleseqx): https://github.com/peter-evans/enable-pull-request-automerge
 

@@ -1,5 +1,5 @@
 variable "test" {
   type        = bool
-  description = "test gh actiond"
+  description = "test gh actionss"
   default     = false
 }
