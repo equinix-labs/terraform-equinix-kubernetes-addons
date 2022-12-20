@@ -9,6 +9,17 @@ variable "metallb_config" {
   description = "Configuration for Metallb add-on"
   default     = {}
 }
+
+variable "enable_longhorn" {
+  type        = bool
+  description = "Enable Longhorn add-on"
+  default     = false
+}
+variable "longhorn_config" {
+  type        = any
+  description = "Configuration for Longhorn add-on"
+}
+
 variable "enable_rook" {
   type        = bool
   description = "Enable Rook add-on"

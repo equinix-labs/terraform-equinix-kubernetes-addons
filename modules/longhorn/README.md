@@ -1,10 +1,8 @@
-## Rook
+## Longhorn
 
-Rook is an open source cloud-native storage orchestrator, providing the platform, framework, and support for Ceph storage to natively integrate with cloud-native environments.
+Longhorn is a lightweight, reliable and easy-to-use distributed block storage system for Kubernetes.
 
-This module installs rook using the rook-ceph helm chart.
-
-For more details checkout [Rook](https://rook.github.io/docs/rook/latest-release/Getting-Started/intro/) docs.
+For more details checkout [Longhorn](https://longhorn.io/docs/) docs.
 
 <!-- TEMPLATE: Insert an image here of the infrastructure diagram. You can generate a starting image using instructions found at https://www.terraform.io/docs/cli/commands/graph.html#generating-images -->
 
@@ -31,13 +29,13 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [helm_release.rook](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.longhorn](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_rook_config"></a> [rook\_config](#input\_rook\_config) | Add-on configuration for Rook add-on | `any` | <pre>{<br>  "rook_name": "rook-ceph",<br>  "rook_namespace": "rook-ceph"<br>}</pre> | no |
+| <a name="input_longhorn_config"></a> [longhorn\_config](#input\_longhorn\_config) | Add-on configuration for Longhorn add-on | `any` | <pre>{<br>  "longhorn_name": "longhorn",<br>  "longhorn_namespace": "longhorn-system"<br>}</pre> | no |
 
 ## Outputs
 
@@ -67,13 +65,13 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [helm_release.rook](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.longhorn](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_rook_config"></a> [rook\_config](#input\_rook\_config) | Add-on configuration for Rook add-on | `any` | <pre>{<br>  "rook_name": "rook-ceph",<br>  "rook_namespace": "rook-ceph"<br>}</pre> | no |
+| <a name="input_longhorn_config"></a> [longhorn\_config](#input\_longhorn\_config) | Add-on configuration for Longhorn add-on | `any` | <pre>{<br>  "longhorn_name": "longhorn",<br>  "longhorn_namespace": "longhorn-system"<br>}</pre> | no |
 
 ### Outputs
 

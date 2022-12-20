@@ -4,9 +4,14 @@ variable "metal_auth_token" {
   sensitive   = true
 }
 
-variable "project" {
-  description = "Equinix Metal project"
+variable "metal_project_id" {
+  description = "Equinix Metal project ID"
   type        = string
+}
+
+variable "kubeconfig_local_path" {
+  type        = string
+  description = "Depending on your setup, you may need to specify the path to the kubeconfig file locally"
 }
 
 variable "host" {
