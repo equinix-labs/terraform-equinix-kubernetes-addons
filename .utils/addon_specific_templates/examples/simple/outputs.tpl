@@ -11,5 +11,5 @@
 #
 output "equinix_kubernetes_addons_{ADDON_NAME}" {
   description = "Map of attributes available for the {ADDON_NAME^} addon"
-  value       = module.terraform_equinix_kubernetes_addons.{ADDON_NAME}
+  value       = module.equinix_kubernetes_addons.{ADDON_NAME}
 }

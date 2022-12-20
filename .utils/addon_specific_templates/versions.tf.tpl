@@ -19,6 +19,6 @@ terraform {
   }
 
   provider_meta "equinix" {
-    module_name = "terraform-equinix-kubernetes-addons {ADDON_NAME}"
+    module_name = "equinix_kubernetes_addons {ADDON_NAME}"
   }
 }
