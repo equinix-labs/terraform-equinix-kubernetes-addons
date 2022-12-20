@@ -26,6 +26,7 @@ This repository contains a collection of Terraform modules (addons) to help auto
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
 | <a name="requirement_equinix"></a> [equinix](#requirement\_equinix) | >= 1.11.1 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.8.0 |
 
 ### Providers
 
@@ -37,6 +38,7 @@ No providers.
 |------|--------|---------|
 | <a name="module_longhorn"></a> [longhorn](#module\_longhorn) | ./modules/longhorn | n/a |
 | <a name="module_metallb"></a> [metallb](#module\_metallb) | ./modules/metallb | n/a |
+| <a name="module_rook"></a> [rook](#module\_rook) | ./modules/rook | n/a |
 
 ### Resources
 
@@ -48,12 +50,15 @@ No resources.
 |------|-------------|------|---------|:--------:|
 | <a name="input_equinix_metro"></a> [equinix\_metro](#input\_equinix\_metro) | Equinix metro code | `string` | n/a | yes |
 | <a name="input_equinix_project"></a> [equinix\_project](#input\_equinix\_project) | Equinix project | `string` | n/a | yes |
+| <a name="input_kubeconfig_local_path"></a> [kubeconfig\_local\_path](#input\_kubeconfig\_local\_path) | Depending on your setup, you may need to specify the path to the kubeconfig file locally | `string` | n/a | yes |
 | <a name="input_kubeconfig_remote_path"></a> [kubeconfig\_remote\_path](#input\_kubeconfig\_remote\_path) | Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server | `string` | n/a | yes |
 | <a name="input_longhorn_config"></a> [longhorn\_config](#input\_longhorn\_config) | Configuration for Longhorn add-on | `any` | n/a | yes |
+| <a name="input_rook_config"></a> [rook\_config](#input\_rook\_config) | Configuration for Rook add-on | `any` | n/a | yes |
 | <a name="input_ssh_host"></a> [ssh\_host](#input\_ssh\_host) | The address of the server from where to perform kubectl installations and changes | `string` | n/a | yes |
 | <a name="input_ssh_private_key"></a> [ssh\_private\_key](#input\_ssh\_private\_key) | The contents of an SSH key to use for the connection. These can be loaded from a file on disk using the file function | `string` | n/a | yes |
 | <a name="input_enable_longhorn"></a> [enable\_longhorn](#input\_enable\_longhorn) | Enable Longhorn add-on | `bool` | `false` | no |
 | <a name="input_enable_metallb"></a> [enable\_metallb](#input\_enable\_metallb) | Enable Metallb add-on | `bool` | `false` | no |
+| <a name="input_enable_rook"></a> [enable\_rook](#input\_enable\_rook) | Enable Rook add-on | `bool` | `false` | no |
 | <a name="input_metallb_config"></a> [metallb\_config](#input\_metallb\_config) | Configuration for Metallb add-on | `any` | `{}` | no |
 | <a name="input_ssh_user"></a> [ssh\_user](#input\_ssh\_user) | The user to use for the connection | `string` | `"root"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Additional tags (e.g. `['k8s`,`production`] | `list(string)` | `[]` | no |

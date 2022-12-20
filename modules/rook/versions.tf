@@ -11,4 +11,8 @@ terraform {
       version = ">= 2.8.0"
     }
   }
+
+  provider_meta "equinix" {
+    module_name = "terraform-equinix-kubernetes-addons rook"
+  }
 }

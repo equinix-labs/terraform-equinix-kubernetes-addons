@@ -6,9 +6,6 @@ terraform {
       source  = "equinix/equinix"
       version = ">= 1.11.1"
     }
-    helm = {
-      source  = "hashicorp/helm"
-      version = ">= 2.8.0"
-    }
   }
+
 }
