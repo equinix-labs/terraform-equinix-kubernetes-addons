@@ -36,6 +36,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_cloud_provider_equinix_metal"></a> [cloud\_provider\_equinix\_metal](#module\_cloud\_provider\_equinix\_metal) | ./modules/cloud_provider_equinix_metal | n/a |
 | <a name="module_longhorn"></a> [longhorn](#module\_longhorn) | ./modules/longhorn | n/a |
 | <a name="module_metallb"></a> [metallb](#module\_metallb) | ./modules/metallb | n/a |
 | <a name="module_rook"></a> [rook](#module\_rook) | ./modules/rook | n/a |
@@ -56,6 +57,8 @@ No resources.
 | <a name="input_rook_config"></a> [rook\_config](#input\_rook\_config) | Configuration for Rook add-on | `any` | n/a | yes |
 | <a name="input_ssh_host"></a> [ssh\_host](#input\_ssh\_host) | The address of the server from where to perform kubectl installations and changes | `string` | n/a | yes |
 | <a name="input_ssh_private_key"></a> [ssh\_private\_key](#input\_ssh\_private\_key) | The contents of an SSH key to use for the connection. These can be loaded from a file on disk using the file function | `string` | n/a | yes |
+| <a name="input_cloud_provider_equinix_metal_config"></a> [cloud\_provider\_equinix\_metal\_config](#input\_cloud\_provider\_equinix\_metal\_config) | Configuration for cloudproviderequinixmetal add-on | `any` | `{}` | no |
+| <a name="input_enable_cloud_provider_equinix_metal"></a> [enable\_cloud\_provider\_equinix\_metal](#input\_enable\_cloud\_provider\_equinix\_metal) | Enable cloudproviderequinixmetal add-on | `bool` | `false` | no |
 | <a name="input_enable_longhorn"></a> [enable\_longhorn](#input\_enable\_longhorn) | Enable Longhorn add-on | `bool` | `false` | no |
 | <a name="input_enable_metallb"></a> [enable\_metallb](#input\_enable\_metallb) | Enable Metallb add-on | `bool` | `false` | no |
 | <a name="input_enable_rook"></a> [enable\_rook](#input\_enable\_rook) | Enable Rook add-on | `bool` | `false` | no |
@@ -67,5 +70,7 @@ No resources.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_cloud_provider_equinix_metal"></a> [cloud\_provider\_equinix\_metal](#output\_cloud\_provider\_equinix\_metal) | Cloud Provider Equinix Metal add-on outputs |
+| <a name="output_cloud_provider_equinix_metal_prerequisites"></a> [cloud\_provider\_equinix\_metal\_prerequisites](#output\_cloud\_provider\_equinix\_metal\_prerequisites) | Cloud Provider Equinix Metal add-on prerequisites for device provisioning |
 | <a name="output_metallb"></a> [metallb](#output\_metallb) | MetaLB addon outputs |
 <!-- END_TF_DOCS -->
