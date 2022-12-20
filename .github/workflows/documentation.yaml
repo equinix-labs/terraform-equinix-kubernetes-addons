@@ -43,6 +43,8 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           title: 'generate-terraform-docs: automated action'
+          body: |
+            Update terraform docs
           branch: ${{ steps.git-branch.outputs.generated_branch }}
           base: 'generate-terraform-docs-test-branch'
           signoff: true
