@@ -54,6 +54,7 @@ No resources.
 | <a name="input_metallb_config"></a> [metallb\_config](#input\_metallb\_config) | Configuration for Metallb add-on | `any` | `{}` | no |
 | <a name="input_ssh_user"></a> [ssh\_user](#input\_ssh\_user) | The user to use for the connection | `string` | `"root"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Additional tags (e.g. `['k8s`,`production`] | `list(string)` | `[]` | no |
+| <a name="input_test"></a> [test](#input\_test) | test gh actionss | `bool` | `false` | no |
 
 ### Outputs
 
