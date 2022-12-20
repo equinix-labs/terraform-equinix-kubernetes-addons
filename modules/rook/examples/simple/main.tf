@@ -1,6 +1,6 @@
 # TEMPLATE: This file was automatically generated with `generate_addon_structure.sh`
 # TEMPLATE: and should be modified as necessary
-module "terraform_equinix_kubernetes_addons" {
+module "equinix_kubernetes_addons" {
   source = "../../../../"
 
   equinix_project = var.project
