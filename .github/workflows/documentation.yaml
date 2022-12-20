@@ -1,21 +1,26 @@
-name: Generate terraform docs
+name: generate-terraform-docs
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - test-gh-action
     paths:
       - '**.tf'
-      - '**.md'
 jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+      id: actions-checkout
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
+        ref: docs
+      - run: |
+          generated_branch="update-docs-$(date +%s)"
+          echo "generated_branch=${generated_branch}" >>$GITHUB_OUTPUT
+          git checkout -b $generated_branch
 
     - name: Render terraform docs inside main and modules README.md files and push changes back to PR branch
+      id: terraform-docs
       uses: terraform-docs/gh-actions@v1.0.0
       with:
         working-dir: .
@@ -25,3 +30,18 @@ jobs:
         indention: 3
         git-push: "true"
         git-commit-message: "terraform-docs: automated action"
+        git-push-sign-off: "true"
+
+    - name: Create Pull Request
+      if: ${{ steps.terraform-docs.outputs.num_changed != '0' }}
+      uses: peter-evans/create-pull-request@v4
+      with:
+        title: 'generate-terraform-docs: automated action'
+
+    # TODO(ocobleseqx): https://github.com/peter-evans/enable-pull-request-automerge
+
+    - name: Delete branch
+      if: ${{ steps.terraform-docs.outputs.num_changed == '0' }}
+      run: |
+        git checkout main
+        git branch -D ${{ steps.actions-checkout.outputs.generated_branch }}
