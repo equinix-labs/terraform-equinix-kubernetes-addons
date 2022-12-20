@@ -1,0 +1,28 @@
+name: Generate terraform docs
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.tf'
+      - '**.md'
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: Render terraform docs inside main and modules README.md files and push changes back to PR branch
+      uses: terraform-docs/gh-actions@v1.0.0
+      with:
+        working-dir: .
+        recursive: true
+        recursive-path: modules
+        args: --sort-by required
+        indention: 3
+        git-push: "true"
+        git-commit-message: "terraform-docs: automated action"
+        git-push-sign-off: "true"
