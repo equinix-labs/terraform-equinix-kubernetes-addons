@@ -10,7 +10,7 @@ provider "equinix" {
   auth_token = var.auth_token
 }
 
-module "terraform-equinix-kubernetes-addons" {
+module "terraform_equinix_kubernetes_addons" {
   source = "../../../../"
 
   equinix_project = var.project

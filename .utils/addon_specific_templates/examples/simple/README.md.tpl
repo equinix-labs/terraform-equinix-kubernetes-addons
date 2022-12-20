@@ -15,7 +15,7 @@ To provision this example, you should clone the github repository and run terraf
 
 ```
 git clone https://github.com/equinix-labs/terraform-equinix-kubernetes-addons.git
-cd terraform-equinix-kubernetes-addons/modules/{ADDON_NAME}/examples/simple
+cd terraform-equinix-kubernetes-addons/modules/{ADDON_DIR}/examples/simple
 terraform init
 terraform apply
 ```

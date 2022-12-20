@@ -26,8 +26,8 @@ variable "addon_context" {
   })
 }
 
-variable "addon_config" {
-  description = "Add-on configuration for Metallb"
+variable "{ADDON_NAME}_config" {
+  description = "Add-on configuration for {ADDON_NAME^}"
   type        = any
   default     = {}
 }

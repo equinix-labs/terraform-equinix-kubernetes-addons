@@ -44,8 +44,8 @@ function print_green(){
 }
 
 function check_addon(){
-    if [ -d "../modules/$ADDON_NAME" ]; then
-        echo "Error: $ADDON_NAME folder already exists!"
+    if [ -d "../modules/$ADDON_DIR" ]; then
+        echo "Error: $ADDON_DIR folder already exists!"
         exit 1
     fi
 }
@@ -72,33 +72,38 @@ function request_approve(){
 }
 
 function clone_template() {
-    git clone "https://github.com/equinix-labs/terraform-equinix-template.git" $ADDON_NAME
+    git clone "https://github.com/equinix-labs/terraform-equinix-template.git" $ADDON_DIR
 }
 
 function override_template(){
     ## remove not required files
     local files_rm=(".github/" ".gitignore" ".terraform.lock.hcl" "CODEOWNERS" "LICENSE")
     for f in ${files_rm[@]}; do
-        rm -rf ./$ADDON_NAME/$f
+        rm -rf ./$ADDON_DIR/$f
     done
     ## add templates header
-    find ./$ADDON_NAME -type f -name "*.tf" -exec perl -pi -e 'print "# TEMPLATE: This file was automatically generated with \`generate_addon_structure.sh\`\n# TEMPLATE: and should be modified as necessary\n" if $. == 1' {} \;
-    find ./$ADDON_NAME -type f -iname "*.md" -exec perl -pi -e 'print "<!-- TEMPLATE: This file was automatically generated with `generate_addon_structure.sh` and should be modified as necessary -->\n" if $. == 1' {} \;
+    find ./$ADDON_DIR -type f -name "*.tf" -exec perl -pi -e 'print "# TEMPLATE: This file was automatically generated with \`generate_addon_structure.sh\`\n# TEMPLATE: and should be modified as necessary\n" if $. == 1' {} \;
+    find ./$ADDON_DIR -type f -iname "*.md" -exec perl -pi -e 'print "<!-- TEMPLATE: This file was automatically generated with `generate_addon_structure.sh` and should be modified as necessary -->\n" if $. == 1' {} \;
     ## add/replace addon_specific_templates files
-    rsync -avP ./addon_specific_templates/ ./$ADDON_NAME/
+    rsync -avP ./addon_specific_templates/ ./$ADDON_DIR/
     ## get latest equinix provider version
     get_equinix_provider_latest_release
     ## replace variables
-    grep -rl "{EQUINIX_PROVIDER_VERSION}" ./$ADDON_NAME/ | xargs sed -i "" "s/{EQUINIX_PROVIDER_VERSION}/${EQUINIX_PROVIDER_VERSION}/g"
-    grep -rl "{ADDON_NAME}" ./$ADDON_NAME/ | xargs sed -i "" "s/{ADDON_NAME}/${ADDON_NAME}/g"
-    grep -rl "{ADDON_NAME^}" ./$ADDON_NAME/ | xargs sed -i "" "s/{ADDON_NAME^}/${CAPITALIZED_ADDON_NAME}/g"
-    grep -rl "{ADDON_WEBSITE_URL}" ./$ADDON_NAME/ | xargs sed -i "" "s|{ADDON_WEBSITE_URL}|${ADDON_WEBSITE_URL}|g"
+    replace_text_in_addon "{EQUINIX_PROVIDER_VERSION}" "${EQUINIX_PROVIDER_VERSION}"
+    replace_text_in_addon "{ADDON_DIR}" "${ADDON_DIR}"
+    replace_text_in_addon "{ADDON_NAME}" "${ADDON_NAME}"
+    replace_text_in_addon "{ADDON_NAME^}" "${CAPITALIZED_ADDON_NAME}"
+    replace_text_in_addon "{ADDON_WEBSITE_URL}" "${ADDON_WEBSITE_URL}"
     ## remove templates extension
-    find ./$ADDON_NAME -depth -name "*.tpl" -exec sh -c 'mv "$1" "${1%.*}"' _ {} \;
+    find ./$ADDON_DIR -depth -name "*.tpl" -exec sh -c 'mv "$1" "${1%.*}"' _ {} \;
+}
+
+function replace_text_in_addon(){
+    grep -rl "${1}" ./$ADDON_DIR/ | xargs sed -i "" "s|${1}|${2}|g"
 }
 
 function move_template(){
-    mv ./$ADDON_NAME/ ../modules/$ADDON_NAME
+    mv ./$ADDON_DIR ../modules/
 }
 
 function get_equinix_provider_latest_release() {
@@ -128,13 +133,13 @@ function add_addon_to_module() {
 
 variable "enable_${ADDON_NAME}" {
     type        = bool
-    description = "Enable ${ADDON_NAME} add-on"
+    description = "Enable ${CAPITALIZED_ADDON_NAME} add-on"
     default     = false
 }
 
 variable "${ADDON_NAME}_config" {
     type        = any
-    description = "Configuration for ${ADDON_NAME} add-on"
+    description = "Configuration for ${CAPITALIZED_ADDON_NAME} add-on"
     default     = {}
 }
 EOT
@@ -144,11 +149,12 @@ EOT
 
 module "${ADDON_NAME}" {
     count  = var.enable_${ADDON_NAME} ? 1 : 0
-    source = "./modules/${ADDON_NAME}"
+    source = "./modules/${ADDON_DIR}"
 
     ssh_config    = local.ssh_config
-    addon_config  = var.${ADDON_NAME}_config
     addon_context = local.addon_context
+
+    ${ADDON_NAME}_config = var.${ADDON_NAME}_config
 }
 EOT
 
@@ -157,23 +163,25 @@ EOT
 
 output "${ADDON_NAME}" {
     value = module.${ADDON_NAME}
+    description = "Map of attributes available for the ${CAPITALIZED_ADDON_NAME} addon"
 }
 EOT
 }
 
 #sanitize vars
 CAPITALIZED_ADDON_NAME=`echo ${ADDON_NAME:0:1} | tr  '[a-z]' '[A-Z]'`${ADDON_NAME:1}
-ADDON_NAME=$(echo $ADDON_NAME | tr '[ _]' '-' | tr -dc '[:alnum:]-' | tr '[:upper:]' '[:lower:]')
+ADDON_NAME=$(echo $ADDON_NAME | tr '[- ]' '_' | tr -dc '[:alnum:]_' | tr '[:upper:]' '[:lower:]')
+ADDON_DIR=$(echo $ADDON_NAME | tr '_' '-')
 
-echo "Checking if ${ADDON_NAME} addon already exists..."
+echo "Checking if ${ADDON_DIR} addon already exists..."
 check_addon
 request_approve
-echo "Building ${ADDON_NAME} addon layout..."
+echo "Building ${ADDON_DIR} addon layout..."
 setup_addon
-echo "Enabling ${ADDON_NAME} addon in main module..."
+echo "Enabling ${ADDON_DIR} addon in main module..."
 add_addon_to_module
 echo ""
-print_green "${ADDON_NAME} addon layout successfully created!"
+print_green "${ADDON_DIR} addon layout successfully created!"
 PROJECT_DIR=$(cd ./../ && basename "`pwd`")
 echo ""
 print_green "Modified project files:"
@@ -182,4 +190,4 @@ print_green "- $PROJECT_DIR/outputs.tf"
 print_green "- $PROJECT_DIR/variables.tf"
 echo ""
 print_green "New folder with addon's editable files:"
-print_green "- $PROJECT_DIR/modules/$ADDON_NAME/"
+print_green "- $PROJECT_DIR/modules/$ADDON_DIR/"
