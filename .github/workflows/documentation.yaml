@@ -17,13 +17,6 @@ jobs:
         with:
           ref: main
 
-      - id: git-branch
-        run: |
-          generated_branch="update-docs-$(date +%s)"
-          echo "generated_branch=${generated_branch}" >>$GITHUB_OUTPUT
-          git checkout -b $generated_branch
-          git push --set-upstream origin $generated_branch
-
       - name: Render terraform docs inside the main and the modules README.md files and push changes back to PR branch
         id: terraform-docs
         uses: terraform-docs/gh-actions@v1.0.0
@@ -46,16 +39,9 @@ jobs:
           body: |
             Update terraform docs
           branch: ${{ steps.git-branch.outputs.generated_branch }}
+          branch-suffix: timestamp
           base: main
           signoff: true
           delete-branch: true
 
       # TODO(ocobleseqx): https://github.com/peter-evans/enable-pull-request-automerge
-
-      - name: Delete branch
-        if: steps.terraform-docs.outputs.num_changed == '0'
-        run: |
-          git checkout main
-          git push origin --delete ${{ steps.git-branch.outputs.generated_branch }}
-          git fetch -p
-          git branch -D ${{ steps.git-branch.outputs.generated_branch }}
