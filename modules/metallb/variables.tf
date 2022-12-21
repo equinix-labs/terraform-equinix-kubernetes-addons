@@ -35,7 +35,7 @@ variable "test" {
 }
 
 variable "test2" {
-  description = "test gh"
+  description = "test 2 gh"
   type        = any
   default     = {}
 }
