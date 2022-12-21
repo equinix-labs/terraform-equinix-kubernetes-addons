@@ -5,6 +5,6 @@
 
 For more details checkout [{ADDON_NAME^}]({ADDON_WEBSITE_URL}) docs.
 
-<!-- TEMPLATE: Please do not remove PRE-COMMIT-TERRAFORM DOCS HOOK comment below -->
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- TEMPLATE: Please do not remove BEGIN_TF_DOCS/END_TF_DOCS comments below -->
+<!-- BEGIN_TF_DOCS -->
+<!-- END_TF_DOCS -->

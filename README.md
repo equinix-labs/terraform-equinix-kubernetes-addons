@@ -32,7 +32,7 @@ Each module includes an `examples` directory with configuration examples specifi
 
 As this project grows and more modules become available, an `examples` directory will be included in the root directory, with blueprints to provision complete solutions.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -73,7 +73,7 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_metallb"></a> [metallb](#output\_metallb) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 ## Adding a new Addon
 

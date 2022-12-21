@@ -19,3 +19,7 @@ cd terraform-equinix-kubernetes-addons/modules/{ADDON_DIR}/examples/simple
 terraform init
 terraform apply
 ```
+
+<!-- TEMPLATE: Please do not remove BEGIN_TF_DOCS/END_TF_DOCS comments below -->
+<!-- BEGIN_TF_DOCS -->
+<!-- END_TF_DOCS -->
