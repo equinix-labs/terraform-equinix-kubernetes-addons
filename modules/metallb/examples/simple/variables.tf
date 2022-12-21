@@ -30,3 +30,9 @@ variable "kubeconfig_remote_path" {
   description = "Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server"
   default     = ""
 }
+
+variable "test" {
+  description = "test gh"
+  type        = any
+  default     = {}
+}
