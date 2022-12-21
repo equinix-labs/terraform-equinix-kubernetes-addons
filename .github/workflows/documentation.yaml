@@ -22,7 +22,6 @@ jobs:
         uses: terraform-docs/gh-actions@v1.0.0
         with:
           find-dir: .
-          recursive: true
           args: --sort-by required
           indention: 3
           git-push: "false"
