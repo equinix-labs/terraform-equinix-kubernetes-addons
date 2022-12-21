@@ -41,6 +41,9 @@ No modules.
 | <a name="input_addon_context"></a> [addon\_context](#input\_addon\_context) | Input context for the addon | <pre>object({<br>    equinix_project        = string<br>    equinix_metro          = string<br>    kubeconfig_remote_path = string<br>  })</pre> | n/a | yes |
 | <a name="input_ssh_config"></a> [ssh\_config](#input\_ssh\_config) | Connection details to apply configuration | <pre>object({<br>    host        = string<br>    user        = optional(string)<br>    private_key = string<br>  })</pre> | n/a | yes |
 | <a name="input_addon_config"></a> [addon\_config](#input\_addon\_config) | Add-on configuration for Metallb | `any` | `{}` | no |
+| <a name="input_test"></a> [test](#input\_test) | test gh | `any` | `{}` | no |
+| <a name="input_test2"></a> [test2](#input\_test2) | test 2 gh | `any` | `{}` | no |
+| <a name="input_test3"></a> [test3](#input\_test3) | test 3 gh | `any` | `{}` | no |
 
 ### Outputs
 
