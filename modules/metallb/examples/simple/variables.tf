@@ -43,3 +43,9 @@ variable "test2" {
   default     = {}
 }
 
+variable "test3" {
+  description = "test 3 gh"
+  type        = any
+  default     = {}
+}
+
