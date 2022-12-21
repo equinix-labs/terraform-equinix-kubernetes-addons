@@ -67,13 +67,14 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [helm_release.rook](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.rook-ceph](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.rook-ceph-cluster](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_rook_config"></a> [rook\_config](#input\_rook\_config) | Add-on configuration for Rook add-on | `any` | <pre>{<br>  "rook_name": "rook-ceph",<br>  "rook_namespace": "rook-ceph"<br>}</pre> | no |
+| <a name="input_rook_config"></a> [rook\_config](#input\_rook\_config) | Add-on configuration for Rook add-on | `any` | <pre>{<br>  "rook-ceph-cluster_name": "rook-ceph-cluster",<br>  "rook-ceph-cluster_namespace": "rook-ceph",<br>  "rook-ceph_name": "rook-ceph",<br>  "rook-ceph_namespace": "rook-ceph"<br>}</pre> | no |
 
 ### Outputs
 
