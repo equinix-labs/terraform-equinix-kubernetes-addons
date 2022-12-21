@@ -6,13 +6,13 @@ terraform {
       source  = "equinix/equinix"
       version = ">= 1.11.1"
     }
-    null = {
-      source  = "hashicorp/null"
-      version = ">= 3.2.1"
+    helm = {
+      source  = "hashicorp/helm"
+      version = ">= 2.8.0"
     }
   }
 
   provider_meta "equinix" {
-    module_name = "equinix_kubernetes_addons metallb"
+    module_name = "terraform-equinix-kubernetes-addons rook"
   }
 }

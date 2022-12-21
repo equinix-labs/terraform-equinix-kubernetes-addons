@@ -1,0 +1,52 @@
+name: pre-commit
+description: Execute pre-commit for Terraform codebase
+inputs:
+  terraform-version:
+    description: Terraform version supported for use in evaluation
+    required: true
+  tflint-version:
+    description: Version of tflint to use when evaluating checks
+    required: false
+    default: latest
+  args:
+    description: Arguments to pass to pre-commit
+    required: false
+    default: '--all-files --color always --show-diff-on-failure'
+  install-tfsec:
+    description: Install tfsec for pre-commit
+    required: false
+    default: 'true'
+  tfsec-version:
+    description: Version of tfsec to install when `install-tfsec` is true
+    required: false
+    default: 1.28.0
+
+runs:
+  using: composite
+  steps:
+    - name: Install Terraform v${{ inputs.terraform-version }}
+      shell: bash
+      run: |
+        rm -rf $(which terraform)
+        curl -sSO https://releases.hashicorp.com/terraform/${{ inputs.terraform-version }}/terraform_${{ inputs.terraform-version }}_linux_amd64.zip
+        sudo unzip -qq terraform_${{ inputs.terraform-version }}_linux_amd64.zip terraform -d /usr/bin/
+        rm terraform_${{ inputs.terraform-version }}_linux_amd64.zip 2> /dev/null
+    - name: Install pre-commit dependencies
+      shell: bash
+      run: |
+        pip install -q pre-commit
+        if [[ "${{ inputs.tflint-version }}" == "latest" ]]; then
+          curl -sSL "$(curl -s https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip")" > tflint.zip
+        else
+          curl -sSLo ./tflint.zip https://github.com/terraform-linters/tflint/releases/download/${{ inputs.tflint-version }}/tflint_linux_amd64.zip
+        fi
+        sudo unzip -qq tflint.zip tflint -d /usr/bin/
+        rm tflint.zip 2> /dev/null
+        if [[ "${{ inputs.install-tfsec }}" == "true" ]]; then
+          curl -sSLo ./tfsec https://github.com/aquasecurity/tfsec/releases/download/${{ inputs.tfsec-version }}/tfsec-$(uname)-amd64
+          chmod +x tfsec
+          sudo mv tfsec /usr/bin/
+        fi
+    - name: Execute pre-commit
+      shell: bash
+      run: pre-commit run ${{ inputs.args }}
