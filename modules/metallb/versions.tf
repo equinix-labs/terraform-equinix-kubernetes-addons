@@ -13,6 +13,6 @@ terraform {
   }
 
   provider_meta "equinix" {
-    module_name = "terraform-equinix-kubernetes-addons metallb"
+    module_name = "equinix_kubernetes_addons metallb"
   }
 }

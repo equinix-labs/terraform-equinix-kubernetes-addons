@@ -2,7 +2,7 @@ provider "equinix" {
   auth_token = var.metal_auth_token
 }
 
-module "terraform_equinix_kubernetes_addons" {
+module "equinix-kubernetes-addons" {
   source = "../../../../"
 
   equinix_project = var.project

@@ -1,3 +1,13 @@
+# TEMPLATE: This file was automatically generated with `generate_addon_structure.sh`
+# TEMPLATE: and should be modified as necessary
+# TEMPLATE:
+# TEMPLATE: All variables must have a description and should declare their type.
+# TEMPLATE: Set defaults whenever possible but do not set defaults for required properties.
+# TEMPLATE: Declare all variables in this file, sprawling declarations are difficult to identify.
+# TEMPLATE:
+# TEMPLATE: https://www.terraform.io/docs/language/values/variables.html
+# TEMPLATE: https://www.terraform.io/docs/language/expressions/types.html
+#
 variable "metal_auth_token" {
   type        = string
   description = "Equinix Metal API key. Leave it empty to use your METAL_AUTH_TOKEN / TF_VAR_metal_auth_token environment variable"
@@ -12,12 +22,6 @@ variable "metal_project_id" {
 variable "host" {
   type        = string
   description = "The address of the server from where to perform kubectl installations and changes"
-}
-
-variable "user" {
-  type        = string
-  description = "The username of the ssh key used to connect to the server defined in host"
-  default     = "root"
 }
 
 variable "private_key_path" {
