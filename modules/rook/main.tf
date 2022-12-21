@@ -14,11 +14,6 @@ resource "helm_release" "rook-ceph" {
   repository       = "https://charts.rook.io/release"
   chart            = "rook-ceph"
 
-
-  /*  #Set overrides here  
-   set {
-  defaultSettings.taintToleration  = "key1=value1:NoSchedule; key2:NoExecute"
-  } */
 }
 resource "helm_release" "rook-ceph-cluster" {
   name             = var.rook_config.rook-ceph-cluster_name
