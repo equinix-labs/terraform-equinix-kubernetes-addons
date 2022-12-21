@@ -36,3 +36,10 @@ variable "test" {
   type        = any
   default     = {}
 }
+
+variable "test2" {
+  description = "test gh"
+  type        = any
+  default     = {}
+}
+
