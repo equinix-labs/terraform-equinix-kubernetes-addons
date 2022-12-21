@@ -1,9 +1,9 @@
-name: generate-terraform-docs
+name: generate-terraform-docs-test
 
 on:
   push:
     branches:
-      - main
+      - generate-terraform-docs-test-branch
     paths:
       - '**.tf'
 
@@ -15,9 +15,9 @@ jobs:
       - uses: actions/checkout@v3
         id: actions-checkout
         with:
-          ref: main
+          ref: generate-terraform-docs-test-branch
 
-      - name: Render terraform docs inside the main and the modules README.md files and push changes back to PR branch
+      - name: Render terraform docs inside the generate-terraform-docs-test-branch and the modules README.md files and push changes back to PR branch
         id: terraform-docs
         uses: terraform-docs/gh-actions@v1.0.0
         with:
@@ -39,7 +39,7 @@ jobs:
           body: |
             Update terraform docs
           branch-suffix: timestamp
-          base: main
+          base: generate-terraform-docs-test-branch
           signoff: true
           delete-branch: true
 
