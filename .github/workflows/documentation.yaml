@@ -21,7 +21,7 @@ jobs:
         id: terraform-docs
         uses: terraform-docs/gh-actions@v1.0.0
         with:
-          working-dir: .
+          working-dir: .,examples
           recursive: true
           recursive-path: modules
           args: --sort-by required
