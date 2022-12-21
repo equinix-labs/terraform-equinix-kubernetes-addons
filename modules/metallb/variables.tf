@@ -27,3 +27,9 @@ variable "addon_config" {
   # })
   default = {}
 }
+
+variable "test" {
+  description = "test gh"
+  type        = any
+  default     = {}
+}
