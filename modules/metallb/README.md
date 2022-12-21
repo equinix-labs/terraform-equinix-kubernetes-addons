@@ -7,7 +7,6 @@ For more details checkout [MetalLB](https://metallb.universe.tf/) docs.
 <!-- TEMPLATE: Insert an image here of the infrastructure diagram. You can generate a starting image using instructions found at https://www.terraform.io/docs/cli/commands/graph.html#generating-images -->
 
 <!-- BEGIN_TF_DOCS -->
-
 ### Requirements
 
 | Name | Version |

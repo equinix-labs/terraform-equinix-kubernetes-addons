@@ -33,7 +33,7 @@ Each module includes an `examples` directory with configuration examples specifi
 As this project grows and more modules become available, an `examples` directory will be included in the root directory, with blueprints to provision complete solutions.
 
 <!-- BEGIN_TF_DOCS -->
-## Requirements
+### Requirements
 
 | Name | Version |
 |------|---------|
@@ -83,14 +83,7 @@ No resources.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_metallb"></a> [metallb](#output\_metallb) | n/a |
 | <a name="output_cloud_provider_equinix_metal"></a> [cloud\_provider\_equinix\_metal](#output\_cloud\_provider\_equinix\_metal) | Cloud Provider Equinix Metal add-on outputs |
 | <a name="output_cloud_provider_equinix_metal_prerequisites"></a> [cloud\_provider\_equinix\_metal\_prerequisites](#output\_cloud\_provider\_equinix\_metal\_prerequisites) | Cloud Provider Equinix Metal add-on prerequisites for device provisioning |
 | <a name="output_metallb"></a> [metallb](#output\_metallb) | MetaLB addon outputs |
-
-## Adding a new Addon
-
-If you are interested in contributing a new addon please check [CONTRIBUTING](CONTRIBUTING.md) for more information and tools available.
-=======
-
 <!-- END_TF_DOCS -->
