@@ -23,7 +23,6 @@ jobs:
         with:
           working-dir: .,examples
           recursive: true
-          recursive-path: modules
           args: --sort-by required
           indention: 3
           git-push: "false"
