@@ -4,6 +4,8 @@ Rook is an open source cloud-native storage orchestrator, providing the platform
 
 This module installs rook using the rook-ceph helm chart.
 
+Please note this the default rook cluster installed by this module requires three worker nodes to actually come up.
+
 For more details checkout [Rook](https://rook.github.io/docs/rook/latest-release/Getting-Started/intro/) docs.
 
 <!-- TEMPLATE: Insert an image here of the infrastructure diagram. You can generate a starting image using instructions found at https://www.terraform.io/docs/cli/commands/graph.html#generating-images -->
