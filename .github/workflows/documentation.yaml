@@ -1,27 +1,44 @@
-name: Generate terraform docs
+name: generate-terraform-docs
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
       - '**.tf'
-      - '**.md'
+
 jobs:
-  docs:
+  tf-docs:
+    name: TF docs
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/checkout@v3
+        id: actions-checkout
+        with:
+          ref: main
 
-    - name: Render terraform docs inside main and modules README.md files and push changes back to PR branch
-      uses: terraform-docs/gh-actions@v1.0.0
-      with:
-        working-dir: .
-        recursive: true
-        recursive-path: modules
-        args: --sort-by required
-        indention: 3
-        git-push: "true"
-        git-commit-message: "terraform-docs: automated action"
+      - name: Render terraform docs inside the main and the modules README.md files and push changes back to PR branch
+        id: terraform-docs
+        uses: terraform-docs/gh-actions@v1.0.0
+        with:
+          find-dir: .
+          args: --sort-by required
+          indention: 3
+          git-push: "false"
+
+      - name: Create Pull Request
+        if: steps.terraform-docs.outputs.num_changed != '0'
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: 'generate-terraform-docs: automated action'
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: 'generate-terraform-docs: automated action'
+          body: |
+            Update terraform docs
+          branch-suffix: timestamp
+          base: main
+          signoff: true
+          delete-branch: true
+
+      # TODO(ocobleseqx): https://github.com/peter-evans/enable-pull-request-automerge
