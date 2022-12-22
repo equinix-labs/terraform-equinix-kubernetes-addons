@@ -18,6 +18,7 @@ variable "enable_longhorn" {
 variable "longhorn_config" {
   type        = any
   description = "Configuration for Longhorn add-on"
+  default     = null
 }
 
 variable "enable_rook" {
@@ -29,6 +30,7 @@ variable "enable_rook" {
 variable "rook_config" {
   type        = any
   description = "Configuration for Rook add-on"
+  default     = null
 }
 
 variable "ssh_host" {

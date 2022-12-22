@@ -7,16 +7,23 @@
 # TEMPLATE: When main.tf becomes unwieldy, consider submodules (https://www.terraform.io/docs/language/modules/develop/structure.html) 
 # TEMPLATE: and dependency inversion (https://www.terraform.io/docs/language/modules/develop/composition.html).
 
-resource "helm_release" "rook" {
-  name             = var.rook_config.rook_name
-  namespace        = var.rook_config.rook_namespace
+resource "helm_release" "rook_ceph" {
+  name             = var.rook_config.rook_ceph_name
+  namespace        = var.rook_config.rook_ceph_namespace
   create_namespace = true
   repository       = "https://charts.rook.io/release"
   chart            = "rook-ceph"
 
+}
+resource "helm_release" "rook_ceph_cluster" {
+  name             = var.rook_config.rook_ceph_cluster_name
+  namespace        = var.rook_config.rook_ceph_cluster_namespace
+  create_namespace = true
+  repository       = "https://charts.rook.io/release"
+  chart            = "rook-ceph-cluster"
 
-  /*  #Set overrides here  
-   set {
-  defaultSettings.taintToleration  = "key1=value1:NoSchedule; key2:NoExecute"
-  } */
+  set {
+    name  = "operatorNamespace"
+    value = var.rook_config.rook_ceph_namespace
+  }
 }

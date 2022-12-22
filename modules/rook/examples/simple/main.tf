@@ -15,10 +15,12 @@ module "equinix_kubernetes_addons" {
 
   enable_rook = true
   rook_config = {
-    rook_name      = "rook-ceph"
-    rook_namespace = "rook-ceph"
+    rook_ceph_name              = "rook-ceph"
+    rook_ceph_namespace         = "rook-ceph"
+    rook_ceph_cluster_name      = "rook-ceph-cluster"
+    rook_ceph_cluster_namespace = "rook-ceph"
   }
 }
 provider "equinix" {
-  auth_token = var.auth_token
+  auth_token = var.metal_auth_token
 }
