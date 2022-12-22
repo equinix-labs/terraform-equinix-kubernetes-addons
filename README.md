@@ -87,3 +87,7 @@ No resources.
 | <a name="output_cloud_provider_equinix_metal_prerequisites"></a> [cloud\_provider\_equinix\_metal\_prerequisites](#output\_cloud\_provider\_equinix\_metal\_prerequisites) | Cloud Provider Equinix Metal add-on prerequisites for device provisioning |
 | <a name="output_metallb"></a> [metallb](#output\_metallb) | MetaLB addon outputs |
 <!-- END_TF_DOCS -->
+
+## Adding a new Addon
+
+If you are interested in adding new addon, please see [CONTRIBUTING A NEW ADDON](CONTRIBUTING.md#contributing-a-new-addon) section for more information and tools available.
