@@ -12,7 +12,7 @@ resource "helm_release" "rook_ceph" {
   namespace        = var.rook_config.rook_ceph_namespace
   create_namespace = true
   repository       = "https://charts.rook.io/release"
-  chart            = "rook_ceph"
+  chart            = "rook-ceph"
 
 }
 resource "helm_release" "rook_ceph_cluster" {
@@ -20,7 +20,7 @@ resource "helm_release" "rook_ceph_cluster" {
   namespace        = var.rook_config.rook_ceph_cluster_namespace
   create_namespace = true
   repository       = "https://charts.rook.io/release"
-  chart            = "rook_ceph_cluster"
+  chart            = "rook-ceph-cluster"
 
   set {
     name  = "operatorNamespace"
