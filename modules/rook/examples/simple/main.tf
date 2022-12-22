@@ -22,5 +22,5 @@ module "equinix_kubernetes_addons" {
   }
 }
 provider "equinix" {
-  auth_token = var.auth_token
+  auth_token = var.metal_auth_token
 }

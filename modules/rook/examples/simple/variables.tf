@@ -1,4 +1,4 @@
-variable "auth_token" {
+variable "metal_auth_token" {
   type        = string
   description = "Equinix Metal API key"
   sensitive   = true
