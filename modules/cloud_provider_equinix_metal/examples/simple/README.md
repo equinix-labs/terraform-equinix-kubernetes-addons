@@ -19,3 +19,7 @@ cd terraform-equinix-kubernetes-addons/modules/cloudproviderequinixmetal/example
 terraform init
 terraform apply
 ```
+
+<!-- TEMPLATE: Please do not remove BEGIN_TF_DOCS/END_TF_DOCS comments below -->
+<!-- BEGIN_TF_DOCS -->
+<!-- END_TF_DOCS -->

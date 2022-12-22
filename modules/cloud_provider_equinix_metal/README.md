@@ -7,44 +7,7 @@ This is a Terraform module that installs and configures Cloud Provider Equinix M
 
 <!-- TEMPLATE: Insert an image here of the infrastructure diagram. You can generate a starting image using instructions found at https://www.terraform.io/docs/cli/commands/graph.html#generating-images -->
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
-
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_null"></a> [null](#provider\_null) | n/a |
-
-## Modules
-
-No modules.
-
-## Resources
-
-| Name | Type |
-|------|------|
-| [null_resource.install_cloud_provider_equinix_metal](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
-
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_addon_config"></a> [addon\_config](#input\_addon\_config) | Add-on configuration for Cloud Provider Equinix Metal | <pre>object({<br>     version = string<br>     secret  = map(string)<br>  }) | N/A | yes |
-| <a name="input_addon_context"></a> [addon\_context](#input\_addon\_context) | Input context for the addon | <pre>object({<br>    equinix_project        = string<br>    equinix_metro          = string<br>    kubeconfig_remote_path = string<br>  })</pre> | n/a | yes |
-| <a name="input_ssh_config"></a> [ssh\_config](#input\_ssh\_config) | Connection details to apply configuration | <pre>object({<br>    host        = string<br>    user        = optional(string)<br>    private_key = string<br>  })</pre> | n/a | yes |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| <a name="prerequisites"></a> [prerequisites](#output\_prerequisites) | cloud-init configuration that must be run on nodes when they are provisioned.  Must be a list of objects conforming to the [`part` schema documented for the `cloudinit_config` resource](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs/data-sources/cloudinit_config) |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
+<!-- TEMPLATE: Please do not remove BEGIN_TF_DOCS/END_TF_DOCS comments below -->
 <!-- BEGIN_TF_DOCS -->
 ### Requirements
 
