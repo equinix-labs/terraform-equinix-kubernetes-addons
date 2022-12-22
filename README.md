@@ -90,4 +90,4 @@ No resources.
 
 ## Adding a new Addon
 
-If you are interested in adding new addon, please see [CONTRIBUTING A NEW ADDON](CONTRIBUTING.md#contributing-a-new-addon) section for more information and tools available.
+If you are interested in adding new addons, please see [CONTRIBUTING A NEW ADDON](CONTRIBUTING.md#contributing-a-new-addon) section for more information and tools available.
