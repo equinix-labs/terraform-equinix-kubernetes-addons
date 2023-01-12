@@ -99,7 +99,7 @@ function override_template(){
 }
 
 function replace_text_in_addon(){
-    grep -rl "${1}" ./$ADDON_DIR/ | xargs sed -i "" "s|${1}|${2}|g"
+    grep -rl "${1}" ./$ADDON_DIR/ | xargs sed -i "s|${1}|${2}|g"
 }
 
 function move_template(){
@@ -170,7 +170,7 @@ EOT
 
 #sanitize vars
 CAPITALIZED_ADDON_NAME=`echo ${ADDON_NAME:0:1} | tr  '[a-z]' '[A-Z]'`${ADDON_NAME:1}
-ADDON_NAME=$(echo $ADDON_NAME | tr '[- ]' '_' | tr -dc '[:alnum:]_' | tr '[:upper:]' '[:lower:]')
+ADDON_NAME=$(echo $ADDON_NAME | tr '[-]' '_' | tr -dc '[:alnum:]_' | tr '[:upper:]' '[:lower:]')
 ADDON_DIR=$(echo $ADDON_NAME | tr '_' '-')
 
 echo "Checking if ${ADDON_DIR} addon already exists..."
