@@ -1,0 +1,35 @@
+# Specify the hostnames and IP of the nodes.
+PX_HOST_IPS="${XX_HOST_IPS_XX}"
+
+# Specify the ssh user Ansible will use. It must be root or a sudo user who is able run run sudo command without requiring to the password.
+PX_ANSIBLE_USER="${XX_SSH_USER_XX}"
+
+# Enabled MetalLB load-balancer. If enabled, also provide an IP range from the current subnet.
+# MetalLB will assign IPs from this range. 'PX_METALLB_IP_RANGE' will be ignored if 'PX_METALLB_ENABLED' is set to 'false' 
+PX_METALLB_ENABLED="false"
+PX_METALLB_IP_RANGE="10.21.236.61-10.21.236.70"
+
+# Set Kubespray Version, Leave blank to use the latest available. e.g: "2.17"
+PX_KUBESPRAY_VERSION="${XX_KSVER_XX}"
+
+# Set Kubernetes Version, Leave blank to use the default supported by Kubespray. e.g: "v1.21.6"
+PX_K8S_VERSION="${XX_K8SVER_XX}"
+
+# Specify the number of hosts to be used as Kubernetes control plane nodes.
+PX_KUBE_CONTROL_HOSTS="${XX_CPH_XX}"
+
+# ClusterName
+PX_CLUSTER_NAME="${XX_CLUSTER_NAME_XX}"
+
+# Set portworx operator version
+PX_OPERATOR_VERSION="${XX_PXOP_XX}"
+
+# Set portworx storage cluster version. Use Major.Minor.Patch format, e.g: 2.9.0 is valid but 2.9 is not.
+PX_STORAGE_CLUSTER_VERSION="${XX_PXSTG_XX}"
+
+# Specify the device for KVDB. If it is set to 'auto', the smallest blank drive available on each node will be used as kvdb device.
+# If you leave it blank, the kvdb will share the px storage.
+PX_KVDB_DEVICE="auto"
+
+# Enable PX Security
+PX_SECURITY="${XX_PX_SECURITY_XX}"
