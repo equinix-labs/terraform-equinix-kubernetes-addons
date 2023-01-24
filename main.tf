@@ -3,6 +3,7 @@ provider "helm" {
     config_path = var.kubeconfig_local_path
   }
 }
+
 module "metallb" {
   count  = var.enable_metallb ? 1 : 0
   source = "./modules/metallb"
@@ -36,8 +37,6 @@ module "portworx" {
     count  = var.enable_portworx ? 1 : 0
     source = "./modules/portworx"
 
-    ssh_config    = local.ssh_config
-    addon_context = local.addon_context
-
+    kubeconfig_local_path = var.kubeconfig_local_path
     portworx_config = var.portworx_config
 }
