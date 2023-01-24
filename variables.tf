@@ -86,3 +86,15 @@ variable "cloud_provider_equinix_metal_config" {
   description = "Configuration for cloudproviderequinixmetal add-on"
   default     = {}
 }
+
+variable "enable_portworx" {
+    type        = bool
+    description = "Enable Portworx add-on"
+    default     = false
+}
+
+variable "portworx_config" {
+    type        = any
+    description = "Configuration for Portworx add-on"
+    default     = {}
+}

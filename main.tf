@@ -31,3 +31,13 @@ module "cloud_provider_equinix_metal" {
   addon_config  = var.cloud_provider_equinix_metal_config
   addon_context = local.addon_context
 }
+
+module "portworx" {
+    count  = var.enable_portworx ? 1 : 0
+    source = "./modules/portworx"
+
+    ssh_config    = local.ssh_config
+    addon_context = local.addon_context
+
+    portworx_config = var.portworx_config
+}

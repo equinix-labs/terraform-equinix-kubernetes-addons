@@ -1,0 +1,1 @@
+# TEMPLATE: Place your static files referenced but not executed by Terraform under this folder
