@@ -119,11 +119,11 @@ variable "portworx_config" {
     px_stg_version = "1.10.1"
     px_security = false
     ssh = {
-    host = ["soln-demo-01", "soln-demo-02", "soln-demo-03", "soln-demo-04"]
-    worker_addresses = ["147.75.47.9", "147.75.35.95", "147.28.154.47", "145.40.99.5"]
+    host = ["host-01", "host-02", "host-03", "host-04"]
+    worker_addresses = ["147.x.x.x", "147.x.x.x", "147.x.x.x", "145.x.x.x"]
     private_key      = "/root/.ssh/eqx_priv"
     user             = "root"
-    kubeconfig       = "/root/demo/terraform-portworx-on-baremetal/modules/k8s_setup/kube-config-file"
+    kubeconfig       = "/root/kube-config-file"
   }
   }
 }
