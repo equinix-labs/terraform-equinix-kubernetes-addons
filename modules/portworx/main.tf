@@ -4,23 +4,18 @@ locals {
 }
 
 
-data "template_file" "config_vars" {
-  template = file("${path.module}/templates/cluster-config-vars.template")
-  vars = {
-    XX_HOST_IPS_XX     = local.ndata
-    XX_SSH_USER_XX     = var.portworx_config.ssh_user
-    XX_KSVER_XX        = var.portworx_config.kubespray_version
-    XX_K8SVER_XX       = var.portworx_config.k8s_version
-    XX_PXOP_XX         = var.portworx_config.px_operator_version
-    XX_PXSTG_XX        = var.portworx_config.px_stg_version
-    XX_CPH_XX          = var.portworx_config.cp_node_count
-    XX_CLUSTER_NAME_XX = var.portworx_config.cluster_name
-    XX_PX_SECURITY_XX  = var.portworx_config.px_security
-  }
-}
-
 resource "local_sensitive_file" "cluster_config_vars" {
-  content  = data.template_file.config_vars.rendered
+  content = templatefile("${path.module}/templates/cluster-config-vars.tftpl",
+    { XX_HOST_IPS_XX     = local.ndata,
+      XX_SSH_USER_XX     = var.portworx_config.ssh_user
+      XX_KSVER_XX        = var.portworx_config.kubespray_version
+      XX_K8SVER_XX       = var.portworx_config.k8s_version
+      XX_PXOP_XX         = var.portworx_config.px_operator_version
+      XX_PXSTG_XX        = var.portworx_config.px_stg_version
+      XX_CPH_XX          = var.portworx_config.cp_node_count
+      XX_CLUSTER_NAME_XX = var.portworx_config.cluster_name
+      XX_PX_SECURITY_XX  = var.portworx_config.px_security
+  })
   filename = "${path.root}/cluster-config-vars"
 }
 

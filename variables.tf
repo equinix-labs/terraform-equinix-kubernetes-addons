@@ -60,7 +60,7 @@ variable "kubeconfig_remote_path" {
 variable "kubeconfig_local_path" {
   type        = string
   description = "Depending on your setup, you may need to specify the path to the kubeconfig file locally"
-  default     = "/root/demo/terraform-portworx-on-baremetal/modules/k8s_setup/kube-config-file"
+  default     = null
 }
 
 variable "tags" {
@@ -96,34 +96,11 @@ variable "cloud_provider_equinix_metal_config" {
 variable "enable_portworx" {
   type        = bool
   description = "Enable Portworx add-on"
-  default     = true
+  default     = false
 }
 
-#variable "portworx_config" {
-#    type        = any
-#    description = "Configuration for Portworx add-on"
-#    default     = {}
-#}
-
 variable "portworx_config" {
-  description = "Add-on configuration for Rook add-on"
   type        = any
-  default = {
-    metal_auth_token    = null
-    ssh_user            = "root"
-    k8s_version         = "1.23"
-    cp_node_count       = "1"
-    cluster_name        = "px-cluster"
-    kubespray_version   = "2.20"
-    px_operator_version = "2.10.0"
-    px_stg_version      = "1.10.1"
-    px_security         = false
-    ssh = {
-      host             = ["host-01", "host-02", "host-03", "host-04"]
-      worker_addresses = ["147.x.x.x", "147.x.x.x", "147.x.x.x", "145.x.x.x"]
-      private_key      = "/root/.ssh/eqx_priv"
-      user             = "root"
-      kubeconfig       = "/root/kube-config-file"
-    }
-  }
+  description = "Configuration for Portworx add-on"
+  default     = {}
 }
