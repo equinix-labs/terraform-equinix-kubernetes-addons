@@ -34,9 +34,9 @@ module "cloud_provider_equinix_metal" {
 }
 
 module "portworx" {
-    count  = var.enable_portworx ? 1 : 0
-    source = "./modules/portworx"
+  count  = var.enable_portworx ? 1 : 0
+  source = "./modules/portworx"
 
-    kubeconfig_local_path = var.kubeconfig_local_path
-    portworx_config = var.portworx_config
+  kubeconfig_local_path = var.kubeconfig_local_path
+  portworx_config       = var.portworx_config
 }

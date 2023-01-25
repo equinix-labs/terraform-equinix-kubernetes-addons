@@ -16,6 +16,9 @@ terraform {
       source  = "equinix/equinix"
       version = ">= 1.11.1"
     }
+    template = ">= 2.0"
+    local    = ">= 2.0"
+    null     = ">=3.0"
   }
 
   provider_meta "equinix" {

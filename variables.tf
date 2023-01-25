@@ -94,9 +94,9 @@ variable "cloud_provider_equinix_metal_config" {
 }
 
 variable "enable_portworx" {
-    type        = bool
-    description = "Enable Portworx add-on"
-    default     = true
+  type        = bool
+  description = "Enable Portworx add-on"
+  default     = true
 }
 
 #variable "portworx_config" {
@@ -109,21 +109,21 @@ variable "portworx_config" {
   description = "Add-on configuration for Rook add-on"
   type        = any
   default = {
-    metal_auth_token = null
-    ssh_user = "root"
-    k8s_version = "1.23"
-    cp_node_count = "1"
-    cluster_name = "px-cluster"
-    kubespray_version = "2.20"
+    metal_auth_token    = null
+    ssh_user            = "root"
+    k8s_version         = "1.23"
+    cp_node_count       = "1"
+    cluster_name        = "px-cluster"
+    kubespray_version   = "2.20"
     px_operator_version = "2.10.0"
-    px_stg_version = "1.10.1"
-    px_security = false
+    px_stg_version      = "1.10.1"
+    px_security         = false
     ssh = {
-    host = ["host-01", "host-02", "host-03", "host-04"]
-    worker_addresses = ["147.x.x.x", "147.x.x.x", "147.x.x.x", "145.x.x.x"]
-    private_key      = "/root/.ssh/eqx_priv"
-    user             = "root"
-    kubeconfig       = "/root/kube-config-file"
-  }
+      host             = ["host-01", "host-02", "host-03", "host-04"]
+      worker_addresses = ["147.x.x.x", "147.x.x.x", "147.x.x.x", "145.x.x.x"]
+      private_key      = "/root/.ssh/eqx_priv"
+      user             = "root"
+      kubeconfig       = "/root/kube-config-file"
+    }
   }
 }
