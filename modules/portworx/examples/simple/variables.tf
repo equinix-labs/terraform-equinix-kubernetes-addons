@@ -14,23 +14,32 @@ variable "metal_auth_token" {
   sensitive   = true
 }
 
-variable "metal_project_id" {
-  description = "Equinix Metal project ID"
-  type        = string
-}
-
-variable "host" {
-  type        = string
-  description = "The address of the server from where to perform kubectl installations and changes"
+variable "node_names" {
+  type        = list(string)
+  description = "Baremetal hostnames"
+  default     = null
 }
 
 variable "private_key_path" {
   type        = string
   description = "Path to an SSH key to use for the connection"
+  default     = null
 }
 
-variable "kubeconfig_remote_path" {
+variable "node_ips" {
+  type        = list(string)
+  description = "Baremetal ipv4 addresses"
+  default     = null
+}
+
+variable "node_user" {
+  type        = list(string)
+  description = "Baremetal username to login"
+  default     = null
+}
+
+variable "kubeconfig_local_path" {
   type        = string
-  description = "Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server"
-  default     = ""
+  description = "Local path to the kubeconfig"
+  default     = null
 }

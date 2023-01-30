@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -u
 set -o pipefail
-. ../../vars
+. vars
 
 vPXStrgClstrName="px-cluster";
 "${kbCtl}"  --kubeconfig="${vKubeConfig}" patch   storagecluster "${vPXStrgClstrName}" --namespace portworx -p '{"spec":{"deleteStrategy":{"type":"UninstallAndWipe"}}}' --type=merge

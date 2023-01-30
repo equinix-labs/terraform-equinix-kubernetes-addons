@@ -30,15 +30,15 @@ module "equinix_kubernetes_addons" {
     cp_node_count       = "1"
     cluster_name        = "px-cluster"
     kubespray_version   = "2.20"
-    px_operator_version = "2.10.0"
-    px_stg_version      = "1.10.1"
+    px_operator_version = "1.10.2"
+    px_stg_version      = "2.12.1"
     px_security         = false
     ssh = {
-      host             = ["host-01", "host-02", "host-03", "host-04"]
-      worker_addresses = ["147.x.x.x", "147.x.x.x", "147.x.x.x", "145.x.x.x"]
-      private_key      = "/root/.ssh/eqx_priv"
-      user             = "root"
-      kubeconfig       = "/root/kube-config-file"
+      host             = var.node_names
+      worker_addresses = var.node_ips
+      private_key      = var.private_key_path
+      user             = var.node_user
+      kubeconfig       = var.kubeconfig_local_path
     }
   }
 }

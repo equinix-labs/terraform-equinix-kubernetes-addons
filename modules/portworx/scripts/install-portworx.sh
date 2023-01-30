@@ -14,7 +14,7 @@ else
 fi
 rm *_sedtmp
 
-vMasters="$("${kbCtl}" --kubeconfig="${vKubeConfig}" get node --selector='node-role.kubernetes.io/master' --no-headers=true -o custom-columns=":metadata.name")";
+vMasters="$("${kbCtl}" --kubeconfig="${vKubeConfig}" get node --selector='node-role.kubernetes.io/control-plane' --no-headers=true -o custom-columns=":metadata.name")";
 "${kbCtl}" --kubeconfig="${vKubeConfig}" cordon ${vMasters};
 
 echo "Installing PortWorx Operator"

@@ -20,6 +20,9 @@ resource "local_sensitive_file" "cluster_config_vars" {
 }
 
 resource "local_sensitive_file" "varsfile" {
+  depends_on = [
+    local_sensitive_file.cluster_config_vars
+  ]
   content  = templatefile("${path.module}/templates/vars.tftpl", { KUBE_CONF = var.kubeconfig_local_path, PX_CLUSTER_NAME = var.portworx_config.cluster_name, PX_KUBE_CONTROL_HOSTS = var.portworx_config.cp_node_count, PX_K8S_VERSION = var.portworx_config.k8s_version })
   filename = "${path.root}/vars"
 }
@@ -36,6 +39,11 @@ resource "local_sensitive_file" "storage_cluster" {
 }
 
 resource "null_resource" "setup_disks" {
+  depends_on = [
+    local_sensitive_file.varsfile,
+    local_sensitive_file.px_operator,
+    local_sensitive_file.storage_cluster
+  ]
   count = length(var.portworx_config.ssh.worker_addresses)
 
   connection {
@@ -65,7 +73,7 @@ resource "null_resource" "portworx_setup" {
   provisioner "local-exec" {
     command     = <<-EOT
        echo "Setting up Portworx cluster. It will take several minutes."
-       ./scripts/install-portworx.sh
+       ./${path.module}/scripts/install-portworx.sh
      EOT
     interpreter = ["/bin/bash", "-c"]
     working_dir = path.module
@@ -74,7 +82,7 @@ resource "null_resource" "portworx_setup" {
     when        = destroy
     command     = <<-EOT
        echo "Deleting Portworx cluster. It will take several minutes."
-       ./scripts/remove-portworx.sh
+       ./${path.module}/scripts/remove-portworx.sh
      EOT
     interpreter = ["/bin/bash", "-c"]
     working_dir = path.module
