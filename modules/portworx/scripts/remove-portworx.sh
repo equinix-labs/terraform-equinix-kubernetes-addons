@@ -8,7 +8,10 @@ vPXStrgClstrName="px-cluster";
 "${kbCtl}"  --kubeconfig="${vKubeConfig}" delete  StorageCluster "${vPXStrgClstrName}" --namespace portworx &
 sleep 10
 echo "Wating for portworx cleanup proces to finish. It will take about 5 minutes..."
-sleep 300;
+while kubectl --kubeconfig="${vKubeConfig}" get pods -n portworx | grep -i running| grep -v operator 2>&1 >/dev/null
+  do
+    sleep 2
+  done
 echo "Removing portworx operator..."
 "${kbCtl}"  --kubeconfig="${vKubeConfig}" delete  -f "${vPX_Operator_File}" & 
 sleep 10;

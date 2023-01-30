@@ -16,7 +16,7 @@ if [[ "${OPERATION}" == "create" ]]; then
       while IFS= read -r line; do
         TMP_SIZE=$(echo $line|awk {'print $2'})
         TMP_NAME=$(echo $line|awk {'print $1'})
-	if lsblk -f -b -n  -oNAME,SIZE,FSTYPE -i /dev/$TMP_NAME | egrep "xfs|ext3|ext4|btrfs|sr0|swap|loop" > /dev/null || ! wipefs -n -a /dev/$TMP_NAME 2>1 >/dev/null; then
+	if lsblk -f -b -n  -oNAME,SIZE,FSTYPE -i /dev/$TMP_NAME | egrep "xfs|ext3|ext4|btrfs|sr0|swap|loop" > /dev/null || ! wipefs -n -a /dev/$TMP_NAME 2>&1 >/dev/null; then
 	  echo -e "Skipping $TMP_NAME."
 	  continue
 	fi

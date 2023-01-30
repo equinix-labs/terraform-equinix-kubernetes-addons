@@ -76,7 +76,7 @@ resource "null_resource" "portworx_setup" {
        ./${path.module}/scripts/install-portworx.sh
      EOT
     interpreter = ["/bin/bash", "-c"]
-    working_dir = path.module
+    working_dir = path.root
   }
   provisioner "local-exec" {
     when        = destroy
@@ -85,6 +85,11 @@ resource "null_resource" "portworx_setup" {
        ./${path.module}/scripts/remove-portworx.sh
      EOT
     interpreter = ["/bin/bash", "-c"]
-    working_dir = path.module
+    working_dir = path.root
   }
+}
+
+data "external" "get_px_data" {
+  depends_on = [null_resource.portworx_setup]
+  program    = ["sh", "-c", "kubectl --kubeconfig ${var.kubeconfig_local_path} get storagecluster -n portworx --no-headers -o jsonpath='{\"{\"}\"cluster_id\": \"{.items[0].metadata.uid}\", \"cluster_name\": \"{.items[0].metadata.name}\"}' "]
 }
