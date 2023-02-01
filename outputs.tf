@@ -13,12 +13,7 @@ output "cloud_provider_equinix_metal_prerequisites" {
   value       = try(module.cloud_provider_equinix_metal[0].prerequisites, [])
 }
 
-output "portworx_uuid" {
-  value       = module.portworx[0].portworx_uuid
-  description = "Portworx cluster info"
-}
-
-output "portworx_name" {
-  value       = module.portworx[0].portworx_name
-  description = "Portworx cluster name"
+output "portworx" {
+  value       = module.portworx
+  description = "Portworx add-on outputs"
 }

@@ -37,6 +37,6 @@ module "portworx" {
   count  = var.enable_portworx ? 1 : 0
   source = "./modules/portworx"
 
-  kubeconfig_local_path = var.kubeconfig_local_path
+  addon_context         = local.addon_context
   portworx_config       = var.portworx_config
 }

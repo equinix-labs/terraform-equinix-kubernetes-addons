@@ -1,13 +1,9 @@
-# Include main varialbe file
-. cluster-config-vars
-
 # Fixed Variables;
 kbCtl="$(which kubectl)";
 vKubeConfig=${KUBE_CONF};
 vPX_Operator_File=./px-operator.yml;
 vPX_Storage_Cluster_File=./storage-cluster.yml;
 
-export KUBE_CONTROL_HOSTS=${PX_KUBE_CONTROL_HOSTS};
-export CONFIG_FILE="inventory/${PX_CLUSTER_NAME}/hosts.yaml"
-PX_K8S_VERSION="$(echo ${PX_K8S_VERSION}|tr -dc '0-9.')"
-export SETUP_ENV="baremetal"
+# Specify the device for KVDB. If it is set to 'auto', the smallest blank drive available on each node will be used as kvdb device.
+# If you leave it blank, the kvdb will share the px storage.
+PX_KVDB_DEVICE="auto"
