@@ -37,6 +37,6 @@ module "portworx" {
   count  = var.enable_portworx ? 1 : 0
   source = "./modules/portworx"
 
-  addon_context         = local.addon_context
-  portworx_config       = var.portworx_config
+  addon_context   = local.addon_context
+  portworx_config = var.portworx_config
 }

@@ -15,7 +15,7 @@ variable "metal_auth_token" {
 }
 
 variable "worker_nodes" {
-  type = list(map(string))
+  type        = list(map(string))
   description = "List of Baremetal worker nodes"
 }
 

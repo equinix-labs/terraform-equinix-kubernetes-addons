@@ -8,5 +8,5 @@ variable "addon_context" {
 variable "portworx_config" {
   type        = any
   description = "Configuration for Portworx add-on"
-  default = {}
+  default     = {}
 }

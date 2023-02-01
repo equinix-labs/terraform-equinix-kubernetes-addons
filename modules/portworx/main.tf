@@ -15,13 +15,13 @@ resource "local_sensitive_file" "storage_cluster" {
 }
 
 resource "null_resource" "setup_disks" {
-  for_each = { for i, node in var.portworx_config.worker_nodes: node.ip => node }
+  for_each = { for i, node in var.portworx_config.worker_nodes : node.ip => node }
   depends_on = [
     local_sensitive_file.varsfile,
     local_sensitive_file.px_operator,
     local_sensitive_file.storage_cluster
   ]
-  
+
   connection {
     type        = "ssh"
     user        = each.value.user
