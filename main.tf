@@ -40,3 +40,13 @@ module "portworx" {
   addon_context   = local.addon_context
   portworx_config = var.portworx_config
 }
+
+module "portworx_data_services" {
+    count  = var.enable_portworx_data_services ? 1 : 0
+    source = "./modules/portworx-data-services"
+
+    ssh_config    = local.ssh_config
+    addon_context = local.addon_context
+
+    portworx_data_services_config = var.portworx_data_services_config
+}
