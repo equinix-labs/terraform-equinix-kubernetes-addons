@@ -3,6 +3,7 @@ provider "helm" {
     config_path = var.kubeconfig_local_path
   }
 }
+
 module "metallb" {
   count  = var.enable_metallb ? 1 : 0
   source = "./modules/metallb"
@@ -30,4 +31,12 @@ module "cloud_provider_equinix_metal" {
   ssh_config    = local.ssh_config
   addon_config  = var.cloud_provider_equinix_metal_config
   addon_context = local.addon_context
+}
+
+module "portworx" {
+  count  = var.enable_portworx ? 1 : 0
+  source = "./modules/portworx"
+
+  addon_context   = local.addon_context
+  portworx_config = var.portworx_config
 }

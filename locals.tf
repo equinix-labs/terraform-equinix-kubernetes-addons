@@ -11,5 +11,6 @@ locals {
     equinix_project        = var.equinix_project
     tags                   = var.tags
     kubeconfig_remote_path = var.kubeconfig_remote_path
+    kubeconfig_local_path  = var.kubeconfig_local_path
   }
 }
