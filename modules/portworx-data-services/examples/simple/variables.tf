@@ -11,6 +11,7 @@
 variable "pds_account_id" {
   type        = string
   description = "Account ID used to create token for API calls"
+  default     = "db4652ee-8937-47b2-952d-3b883fd2cb33"
 }
 
 variable "pds_token" {
