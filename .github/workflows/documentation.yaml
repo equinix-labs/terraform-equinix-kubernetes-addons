@@ -16,6 +16,7 @@ jobs:
         id: actions-checkout
         with:
           ref: main
+          set-safe-directory: "false"
 
       - name: Render terraform docs inside the main and the modules README.md files and push changes back to PR branch
         id: terraform-docs
