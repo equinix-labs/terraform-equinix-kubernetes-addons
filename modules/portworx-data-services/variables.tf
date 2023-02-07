@@ -8,21 +8,10 @@
 # TEMPLATE: https://www.terraform.io/docs/language/values/variables.html
 # TEMPLATE: https://www.terraform.io/docs/language/expressions/types.html
 #
-variable "ssh_config" {
-  description = "Connection details to apply configuration"
-  type = object({
-    host        = string
-    user        = optional(string)
-    private_key = string
-  })
-}
-
 variable "addon_context" {
   description = "Input context for the addon"
   type = object({
-    equinix_project        = string
-    equinix_metro          = string
-    kubeconfig_remote_path = string
+    kubeconfig_local_path = string
   })
 }
 

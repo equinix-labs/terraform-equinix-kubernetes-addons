@@ -12,16 +12,8 @@
 # TEMPLATE:
 
 # TEMPLATE: Replace sample output described below with your own.
-output "device_hostname" {
-  description = "The example output. In practice, output value reference implicit resource attributes declared in main.tf"
-  sensitive   = false
-  value       = equinix_metal_device.example_device.hostname
-}
 
-# TEMPLATE: Replace sample output described below with your own.
-output "gateway_id" {
-  description = "The example output. In practice, output value reference implicit resource attributes declared in main.tf"
-  sensitive   = false
-  value       = module.inline_module.metal_gateway_id
+output "portworx-data-services" {
+  value       = data.external.get_cluster_id.result
+  description = "Portworx data services info"
 }
-

@@ -8,29 +8,28 @@
 # TEMPLATE: https://www.terraform.io/docs/language/values/variables.html
 # TEMPLATE: https://www.terraform.io/docs/language/expressions/types.html
 #
-variable "metal_auth_token" {
+variable "pds_account_id" {
   type        = string
-  description = "Equinix Metal API key. Leave it empty to use your METAL_AUTH_TOKEN / TF_VAR_metal_auth_token environment variable"
-  sensitive   = true
+  description = "Account ID used to create token for API calls"
 }
 
-variable "metal_project_id" {
-  description = "Equinix Metal project ID"
+variable "pds_token" {
   type        = string
+  description = "API token from User's PDS profile page"
 }
 
-variable "host" {
+variable "tenant_id" {
   type        = string
-  description = "The address of the server from where to perform kubectl installations and changes"
+  description = "Tenant id of the PDS account"
 }
 
-variable "private_key_path" {
+variable "pds_name" {
   type        = string
-  description = "Path to an SSH key to use for the connection"
+  description = "Name of the PDS deployment target"
 }
 
-variable "kubeconfig_remote_path" {
+
+variable "kubeconfig_local_path" {
   type        = string
-  description = "Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server"
-  default     = ""
+  description = "Local path to the kubeconfig"
 }
