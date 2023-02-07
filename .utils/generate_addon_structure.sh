@@ -77,7 +77,7 @@ function clone_template() {
 
 function override_template(){
     ## remove not required files
-    local files_rm=(".git/" ".github/" ".gitignore" ".terraform.lock.hcl" "CODEOWNERS" "LICENSE")
+    local files_rm=(".git/" ".github/" ".gitignore" ".terraform.lock.hcl" "CODEOWNERS" "LICENSE" "CHANGELOG.md" "CODE_OF_CONDUCT.md" "CONTRIBUTING.md" "docs/" "modules/inline-module")
     for f in ${files_rm[@]}; do
         rm -rf ./$ADDON_DIR/$f
     done
@@ -173,7 +173,7 @@ EOT
 
 #sanitize vars
 CAPITALIZED_ADDON_NAME=`echo ${ADDON_NAME:0:1} | tr  '[a-z]' '[A-Z]'`${ADDON_NAME:1}
-ADDON_NAME=$(echo $ADDON_NAME | tr '[-]' '_' | tr -dc '[:alnum:]_' | tr '[:upper:]' '[:lower:]')
+ADDON_NAME=$(echo $ADDON_NAME | tr '[-]' '_' | tr '[ ]' '_' | tr -dc '[:alnum:]_' | tr '[:upper:]' '[:lower:]')
 ADDON_DIR=$(echo $ADDON_NAME | tr '_' '-')
 
 echo "Checking if ${ADDON_DIR} addon already exists..."
