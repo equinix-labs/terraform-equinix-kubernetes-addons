@@ -18,8 +18,8 @@ module "equinix_kubernetes_addons" {
   enable_portworx = true
 
   portworx_config = {
-    px_operator_version = "1.10.2"
-    px_stg_version      = "2.12.1"
+    px_operator_version = "1.10.3"
+    px_stg_version      = "2.12.2"
     px_security         = false
     worker_nodes        = var.worker_nodes
   }
