@@ -77,7 +77,7 @@ function clone_template() {
 
 function override_template(){
     ## remove not required files
-    local files_rm=(".github/" ".gitignore" ".terraform.lock.hcl" "CODEOWNERS" "LICENSE")
+    local files_rm=(".git/" ".github/" ".gitignore" ".terraform.lock.hcl" "CODEOWNERS" "LICENSE")
     for f in ${files_rm[@]}; do
         rm -rf ./$ADDON_DIR/$f
     done
@@ -99,7 +99,10 @@ function override_template(){
 }
 
 function replace_text_in_addon(){
-    grep -rl "${1}" ./$ADDON_DIR/ | xargs sed -i "s|${1}|${2}|g"
+    # Use -i.bak so this command works both on & off macOS
+    grep -rl "${1}" ./$ADDON_DIR/ | xargs sed -i.bak "s|${1}|${2}|g"
+    # Clean up .bak files
+    find ./$ADDON_DIR -name "*.bak" -delete
 }
 
 function move_template(){

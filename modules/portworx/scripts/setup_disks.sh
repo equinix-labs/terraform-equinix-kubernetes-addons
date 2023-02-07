@@ -35,7 +35,7 @@ if [[ "${CHECK_EXISTING}" == "" ]]; then
     echo -e "Creating $DSK_NAME for Portworx KVDB LVM."
     DEV="/dev/$DSK_NAME"
     wipefs -a $DEV
-    pvcreate -y  $DEV
+    pvcreate -y $DEV
     vgcreate -y ${PX_VG_NAME} $DEV
     lvcreate -y -l 100%FREE -n ${PX_LV_NAME} ${PX_VG_NAME}
   else
