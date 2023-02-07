@@ -19,6 +19,6 @@ output "portworx" {
 }
 
 output "portworx_data_services" {
-    value = module.portworx_data_services
-    description = "Map of attributes available for the Portworx_data_services addon"
+  value       = module.portworx_data_services
+  description = "Map of attributes available for the Portworx_data_services addon"
 }

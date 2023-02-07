@@ -46,10 +46,10 @@ module "portworx" {
 }
 
 module "portworx_data_services" {
-    depends_on = [ module.portworx ]
-    count  = var.enable_portworx_data_services ? 1 : 0
-    source = "./modules/portworx-data-services"
+  depends_on = [module.portworx]
+  count      = var.enable_portworx_data_services ? 1 : 0
+  source     = "./modules/portworx-data-services"
 
-    addon_context = local.addon_context
-    portworx_data_services_config = var.portworx_data_services_config
+  addon_context                 = local.addon_context
+  portworx_data_services_config = var.portworx_data_services_config
 }

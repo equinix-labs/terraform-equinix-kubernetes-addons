@@ -20,4 +20,3 @@ rm_id=`curl -X 'DELETE' \
   -H "Authorization: Bearer $1"`
 
 echo $rm_id | jq '.http_status'
-

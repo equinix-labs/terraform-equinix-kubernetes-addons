@@ -13,7 +13,7 @@
 
 # TEMPLATE: Replace sample output described below with your own.
 
-output "portworx-data-services" {
+output "portworx_data_services" {
   value       = data.external.get_cluster_id.result
   description = "Portworx data services info"
 }

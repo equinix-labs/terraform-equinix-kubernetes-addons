@@ -16,11 +16,13 @@ terraform {
       source  = "equinix/equinix"
       version = ">= 1.11.1"
     }
-    http      = ">=3.1.0"
-    template  = ">= 2.0"
-    local     = ">= 2.0"
-    external  = ">=2.0"
-    null      = ">=3.0"
+    http       = ">=3.1.0"
+    template   = ">= 2.0"
+    local      = ">= 2.0"
+    external   = ">=2.0"
+    null       = ">=3.0"
+    helm       = ">=2.8.0"
+    kubernetes = ">=2.17.0"
   }
 
   provider_meta "equinix" {

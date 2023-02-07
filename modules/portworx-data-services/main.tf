@@ -1,7 +1,7 @@
 data "http" "get_token" {
-  url = "https://prod.pds.portworx.com/api/service-accounts/${var.portworx_data_services_config.pds_account_id}/token"       #${local.extd.cluster-id}
+  url = "https://prod.pds.portworx.com/api/service-accounts/${var.portworx_data_services_config.pds_account_id}/token" #${local.extd.cluster-id}
   request_headers = {
-    Accept = "application/json"
+    Accept        = "application/json"
     Authorization = "Bearer ${var.portworx_data_services_config.pds_token}"
   }
 }
@@ -9,7 +9,7 @@ data "http" "get_token" {
 data "http" "get_version" {
   url = "https://prod.pds.portworx.com/api/metadata"
   request_headers = {
-    Accept = "application/json"
+    Accept        = "application/json"
     Authorization = "Bearer ${var.portworx_data_services_config.pds_token}"
   }
 }
@@ -19,12 +19,12 @@ data "external" "get_cluster_id" {
 }
 
 locals {
-auth_token = jsondecode("${data.http.get_token.response_body}").token
-helm_version = jsondecode("${data.http.get_version.response_body}").helm_chart_version
-extd = data.external.get_cluster_id.result
+  auth_token   = jsondecode(data.http.get_token.response_body).token
+  helm_version = jsondecode(data.http.get_version.response_body).helm_chart_version
+  extd         = data.external.get_cluster_id.result
 }
 
-resource "kubernetes_namespace" "pds-ns" {
+resource "kubernetes_namespace" "pds_ns" {
   metadata {
     labels = {
       "pds.portworx.com/available" = "true"
@@ -41,8 +41,8 @@ resource "null_resource" "px_check" {
   }
 }
 
-resource "helm_release" "pds-install" {
-  depends_on       = [ null_resource.px_check, null_resource.pds_remove, kubernetes_namespace.pds-ns ]
+resource "helm_release" "pds_install" {
+  depends_on       = [null_resource.px_check, null_resource.pds_remove, kubernetes_namespace.pds_ns]
   name             = "pds"
   repository       = "https://portworx.github.io/pds-charts"
   chart            = "pds-target"
@@ -69,16 +69,16 @@ resource "helm_release" "pds-install" {
 }
 
 resource "null_resource" "pds_remove" {
-  depends_on = [ null_resource.px_check ]
+  depends_on = [null_resource.px_check]
   triggers = {
-      deploy_id = local.extd.cluster-id
-      local_kube = var.addon_context.kubeconfig_local_path
-      tenant_id = var.portworx_data_services_config.pds_tenant_id
-      token_id = var.portworx_data_services_config.pds_token
-    }
+    deploy_id  = local.extd.cluster-id
+    local_kube = var.addon_context.kubeconfig_local_path
+    tenant_id  = var.portworx_data_services_config.pds_tenant_id
+    token_id   = var.portworx_data_services_config.pds_token
+  }
   provisioner "local-exec" {
-    when    = destroy
-    command = <<-EOT
+    when        = destroy
+    command     = <<-EOT
        echo "Waiting for uninstall to finish"
        sleep 180
        bash ${path.module}/scripts/rm-pds-entry.sh ${self.triggers.token_id} ${self.triggers.tenant_id} ${self.triggers.deploy_id}

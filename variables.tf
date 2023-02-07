@@ -106,13 +106,13 @@ variable "portworx_config" {
 }
 
 variable "enable_portworx_data_services" {
-    type        = bool
-    description = "Enable Portworx_data_services add-on"
-    default     = false
+  type        = bool
+  description = "Enable Portworx_data_services add-on"
+  default     = false
 }
 
 variable "portworx_data_services_config" {
-    type        = any
-    description = "Configuration for Portworx_data_services add-on"
-    default     = {}
+  type        = any
+  description = "Configuration for Portworx_data_services add-on"
+  default     = {}
 }
