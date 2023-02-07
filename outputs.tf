@@ -14,6 +14,6 @@ output "cloud_provider_equinix_metal_prerequisites" {
 }
 
 output "portworx" {
-  value       = module.portworx
   description = "Portworx add-on outputs"
+  value       = module.portworx
 }

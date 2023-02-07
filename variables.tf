@@ -15,6 +15,7 @@ variable "enable_longhorn" {
   description = "Enable Longhorn add-on"
   default     = false
 }
+
 variable "longhorn_config" {
   type        = any
   description = "Configuration for Longhorn add-on"
@@ -57,6 +58,7 @@ variable "kubeconfig_remote_path" {
   description = "Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server"
   default     = null
 }
+
 variable "kubeconfig_local_path" {
   type        = string
   description = "Depending on your setup, you may need to specify the path to the kubeconfig file locally"
