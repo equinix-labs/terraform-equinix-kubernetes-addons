@@ -77,7 +77,7 @@ function clone_template() {
 
 function override_template(){
     ## remove not required files
-    local files_rm=(".git/" ".github/" ".gitignore" ".terraform.lock.hcl" "CODEOWNERS" "LICENSE")
+    local files_rm=(".git/" ".github/" ".gitignore" ".terraform.lock.hcl" "CODEOWNERS" "LICENSE" "CHANGELOG.md" "CODE_OF_CONDUCT.md" "CONTRIBUTING.md" "docs/" "modules/inline-module")
     for f in ${files_rm[@]}; do
         rm -rf ./$ADDON_DIR/$f
     done
