@@ -52,6 +52,7 @@ No providers.
 | <a name="module_cloud_provider_equinix_metal"></a> [cloud\_provider\_equinix\_metal](#module\_cloud\_provider\_equinix\_metal) | ./modules/cloud_provider_equinix_metal | n/a |
 | <a name="module_longhorn"></a> [longhorn](#module\_longhorn) | ./modules/longhorn | n/a |
 | <a name="module_metallb"></a> [metallb](#module\_metallb) | ./modules/metallb | n/a |
+| <a name="module_portworx"></a> [portworx](#module\_portworx) | ./modules/portworx | n/a |
 | <a name="module_rook"></a> [rook](#module\_rook) | ./modules/rook | n/a |
 
 ### Resources
@@ -62,21 +63,23 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_equinix_metro"></a> [equinix\_metro](#input\_equinix\_metro) | Equinix metro code | `string` | n/a | yes |
-| <a name="input_equinix_project"></a> [equinix\_project](#input\_equinix\_project) | Equinix project | `string` | n/a | yes |
-| <a name="input_kubeconfig_local_path"></a> [kubeconfig\_local\_path](#input\_kubeconfig\_local\_path) | Depending on your setup, you may need to specify the path to the kubeconfig file locally | `string` | n/a | yes |
-| <a name="input_kubeconfig_remote_path"></a> [kubeconfig\_remote\_path](#input\_kubeconfig\_remote\_path) | Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server | `string` | n/a | yes |
-| <a name="input_ssh_host"></a> [ssh\_host](#input\_ssh\_host) | The address of the server from where to perform kubectl installations and changes | `string` | n/a | yes |
-| <a name="input_ssh_private_key"></a> [ssh\_private\_key](#input\_ssh\_private\_key) | The contents of an SSH key to use for the connection. These can be loaded from a file on disk using the file function | `string` | n/a | yes |
 | <a name="input_cloud_provider_equinix_metal_config"></a> [cloud\_provider\_equinix\_metal\_config](#input\_cloud\_provider\_equinix\_metal\_config) | Configuration for cloudproviderequinixmetal add-on | `any` | `{}` | no |
 | <a name="input_enable_cloud_provider_equinix_metal"></a> [enable\_cloud\_provider\_equinix\_metal](#input\_enable\_cloud\_provider\_equinix\_metal) | Enable cloudproviderequinixmetal add-on | `bool` | `false` | no |
 | <a name="input_enable_longhorn"></a> [enable\_longhorn](#input\_enable\_longhorn) | Enable Longhorn add-on | `bool` | `false` | no |
 | <a name="input_enable_metallb"></a> [enable\_metallb](#input\_enable\_metallb) | Enable Metallb add-on | `bool` | `false` | no |
+| <a name="input_enable_portworx"></a> [enable\_portworx](#input\_enable\_portworx) | Enable Portworx add-on | `bool` | `false` | no |
 | <a name="input_enable_rook"></a> [enable\_rook](#input\_enable\_rook) | Enable Rook add-on | `bool` | `false` | no |
+| <a name="input_equinix_metro"></a> [equinix\_metro](#input\_equinix\_metro) | Equinix metro code | `string` | `null` | no |
+| <a name="input_equinix_project"></a> [equinix\_project](#input\_equinix\_project) | Equinix project | `string` | `null` | no |
+| <a name="input_kubeconfig_local_path"></a> [kubeconfig\_local\_path](#input\_kubeconfig\_local\_path) | Depending on your setup, you may need to specify the path to the kubeconfig file locally | `string` | `null` | no |
+| <a name="input_kubeconfig_remote_path"></a> [kubeconfig\_remote\_path](#input\_kubeconfig\_remote\_path) | Depending on your setup, you may need to specify the path to the kubeconfig file hosted on the remote server | `string` | `null` | no |
 | <a name="input_longhorn_config"></a> [longhorn\_config](#input\_longhorn\_config) | Configuration for Longhorn add-on | `any` | `null` | no |
 | <a name="input_metallb_config"></a> [metallb\_config](#input\_metallb\_config) | Configuration for Metallb add-on | `any` | `{}` | no |
+| <a name="input_portworx_config"></a> [portworx\_config](#input\_portworx\_config) | Configuration for Portworx add-on | `any` | `{}` | no |
 | <a name="input_rook_config"></a> [rook\_config](#input\_rook\_config) | Configuration for Rook add-on | `any` | `null` | no |
-| <a name="input_ssh_user"></a> [ssh\_user](#input\_ssh\_user) | The user to use for the connection | `string` | `"root"` | no |
+| <a name="input_ssh_host"></a> [ssh\_host](#input\_ssh\_host) | The address of the server from where to perform kubectl installations and changes | `string` | `null` | no |
+| <a name="input_ssh_private_key"></a> [ssh\_private\_key](#input\_ssh\_private\_key) | The contents of an SSH key to use for the connection. These can be loaded from a file on disk using the file function | `string` | `null` | no |
+| <a name="input_ssh_user"></a> [ssh\_user](#input\_ssh\_user) | The user to use for the connection | `string` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Additional tags (e.g. `['k8s`,`production`] | `list(string)` | `[]` | no |
 
 ### Outputs
@@ -86,6 +89,7 @@ No resources.
 | <a name="output_cloud_provider_equinix_metal"></a> [cloud\_provider\_equinix\_metal](#output\_cloud\_provider\_equinix\_metal) | Cloud Provider Equinix Metal add-on outputs |
 | <a name="output_cloud_provider_equinix_metal_prerequisites"></a> [cloud\_provider\_equinix\_metal\_prerequisites](#output\_cloud\_provider\_equinix\_metal\_prerequisites) | Cloud Provider Equinix Metal add-on prerequisites for device provisioning |
 | <a name="output_metallb"></a> [metallb](#output\_metallb) | MetaLB addon outputs |
+| <a name="output_portworx"></a> [portworx](#output\_portworx) | Portworx add-on outputs |
 <!-- END_TF_DOCS -->
 
 ## Adding a new Addon
