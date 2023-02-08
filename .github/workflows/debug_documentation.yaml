@@ -14,7 +14,6 @@ jobs:
         id: actions-checkout
         with:
           ref: main
-          set-safe-directory: "false"
 
       - name: Debug
         run: |
@@ -35,8 +34,8 @@ jobs:
           ls -lha .git
           ls -lha .git/objects
 
-      - name: Fix .git owner
-        run: sudo chown runner:docker -R .git
+      # - name: Fix .git owner
+      #   run: sudo chown runner:docker -R .git
 
       - name: Debug
         run: |
