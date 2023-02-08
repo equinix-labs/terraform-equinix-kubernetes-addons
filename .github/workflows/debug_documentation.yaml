@@ -10,15 +10,10 @@ jobs:
     name: TF docs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.2.0
+      - uses: actions/checkout@v3
         id: actions-checkout
         with:
           ref: main
-
-      - name: Debug
-        run: |
-          ls -lha .git
-          ls -lha .git/objects
 
       - name: Render terraform docs inside the main and the modules README.md files and push changes back to PR branch
         id: terraform-docs
@@ -29,18 +24,8 @@ jobs:
           indention: 3
           git-push: "false"
 
-      - name: Debug
-        run: |
-          ls -lha .git
-          ls -lha .git/objects
-
-      # - name: Fix .git owner
-      #   run: sudo chown runner:docker -R .git
-
-      - name: Debug
-        run: |
-          ls -lha .git
-          ls -lha .git/objects
+      - name: Fix .git owner
+        run: sudo chown runner:docker -R .git
 
       - name: Create Pull Request
         if: steps.terraform-docs.outputs.num_changed != '0'
