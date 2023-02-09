@@ -20,7 +20,7 @@ module "equinix_kubernetes_addons" {
   portworx_data_services_config = {
     pds_account_id = var.pds_account_id
     pds_token      = var.pds_token
-    tenant_id      = var.tenant_id
+    pds_tenant_id  = var.pds_tenant_id
     pds_name       = var.pds_name
   }
 }

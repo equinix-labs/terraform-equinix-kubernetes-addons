@@ -72,7 +72,7 @@ resource "null_resource" "pds_remove" {
   depends_on = [null_resource.px_check]
   triggers = {
     deploy_id  = local.extd.cluster-id
-    local_kube = var.addon_context.kubeconfig_local_path
+    local_kube_base64 = filebase64(var.addon_context.kubeconfig_local_path)
     tenant_id  = var.portworx_data_services_config.pds_tenant_id
     token_id   = var.portworx_data_services_config.pds_token
   }
@@ -85,6 +85,9 @@ resource "null_resource" "pds_remove" {
     EOT
     interpreter = ["/bin/bash", "-c"]
     working_dir = path.root
+    environment = {
+      KUBECONFIG = "${self.triggers.local_kube_base64}"
+    }
   }
 
 }
