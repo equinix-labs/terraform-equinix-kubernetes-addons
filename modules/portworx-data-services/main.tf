@@ -86,7 +86,7 @@ resource "null_resource" "pds_remove" {
     interpreter = ["/bin/bash", "-c"]
     working_dir = path.root
     environment = {
-      KUBECONFIG = "${self.triggers.local_kube_base64}"
+      KUBECONFIG = self.triggers.local_kube_base64
     }
   }
 
