@@ -71,10 +71,10 @@ resource "helm_release" "pds_install" {
 resource "null_resource" "pds_remove" {
   depends_on = [null_resource.px_check]
   triggers = {
-    deploy_id  = local.extd.cluster-id
+    deploy_id         = local.extd.cluster-id
     local_kube_base64 = filebase64(var.addon_context.kubeconfig_local_path)
-    tenant_id  = var.portworx_data_services_config.pds_tenant_id
-    token_id   = var.portworx_data_services_config.pds_token
+    tenant_id         = var.portworx_data_services_config.pds_tenant_id
+    token_id          = var.portworx_data_services_config.pds_token
   }
   provisioner "local-exec" {
     when        = destroy

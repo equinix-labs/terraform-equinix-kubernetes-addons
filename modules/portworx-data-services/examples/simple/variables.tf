@@ -17,7 +17,7 @@ variable "metal_auth_token" {
 
 variable "pds_account_id" {
   type        = string
-  description = "Account ID used to create token for API calls"
+  description = "PDS Service Account ID used to create auth token for adding target cluster. Should be used by all users to consume the module"
   default     = "db4652ee-8937-47b2-952d-3b883fd2cb33"
 }
 
@@ -27,7 +27,7 @@ variable "pds_token" {
   sensitive   = true
 }
 
-variable "tenant_id" {
+variable "pds_tenant_id" {
   type        = string
   description = "Tenant id of the PDS account"
 }
