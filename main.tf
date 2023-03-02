@@ -55,3 +55,12 @@ module "portworx_data_services" {
   addon_context                 = local.addon_context
   portworx_data_services_config = var.portworx_data_services_config
 }
+
+module "kube_vip" {
+  depends_on = [module.cloud_provider_equinix_metal]
+  count      = var.enable_kube_vip ? 1 : 0
+  source     = "./modules/kube-vip"
+
+  addon_context   = local.addon_context
+  kube_vip_config = var.kube_vip_config
+}

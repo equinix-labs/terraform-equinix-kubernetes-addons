@@ -118,3 +118,15 @@ variable "portworx_data_services_config" {
   description = "Configuration for Portworx_data_services add-on"
   default     = {}
 }
+
+variable "enable_kube_vip" {
+  type        = bool
+  description = "Enable Kube-vip add-on"
+  default     = false
+}
+
+variable "kube_vip_config" {
+  type        = any
+  description = "Configuration for Kube-vip add-on"
+  default     = {}
+}
