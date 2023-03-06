@@ -12,18 +12,10 @@ terraform {
   required_version = ">= 1.0.0"
 
   required_providers {
-    equinix = {
-      source  = "equinix/equinix"
-      version = ">= 1.12.0"
-    }
     kubectl = {
       source  = "gavinbunney/kubectl"
       version = ">= 1.7.0"
     }
     http = ">=3.1.0"
-  }
-
-  provider_meta "equinix" {
-    module_name = "equinix_kubernetes_addons kube_vip"
   }
 }

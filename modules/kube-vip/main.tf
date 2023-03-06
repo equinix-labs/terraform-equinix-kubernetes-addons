@@ -12,7 +12,8 @@ data "http" "releases" {
 }
 
 locals {
-  kvversion = try(var.kube_vip_config.version, jsondecode(data.http.releases.response_body).0.name)
+  cpem_installed = try(var.kube_vip_config.cpem_installed, true)
+  kvversion      = coalesce(try(var.kube_vip_config.version, ""), jsondecode(data.http.releases.response_body).0.name)
 }
 
 resource "kubectl_manifest" "kube_vip" {
@@ -20,10 +21,10 @@ resource "kubectl_manifest" "kube_vip" {
     "spec.template.spec.containers"
   ]
   yaml_body = templatefile("${path.module}/templates/manifest.tftpl", {
-    cpem_enabled  = try(var.kube_vip_config.cpem_installed, "")
+    cpem_enabled  = local.cpem_installed
     kvversion     = local.kvversion
-    metal_project = try(var.addon_context.equinix_project, "")
-    metal_key     = try(var.kube_vip_config.metal_key, "")
+    metal_project = local.cpem_installed ? "" : var.addon_context.equinix_project
+    metal_key     = local.cpem_installed ? "" : var.kube_vip_config.metal_key
   })
   force_new = true
 }

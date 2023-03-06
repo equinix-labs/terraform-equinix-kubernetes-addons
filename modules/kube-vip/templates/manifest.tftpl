@@ -32,16 +32,9 @@ spec:
           value: "32"
         - name: svc_enable
           value: "true"
-%{ if cpem_enabled == "true" }
+%{ if cpem_enabled }
         - name: annotation
           value: metal.equinix.com
-        - name: bgp_routerid
-        - name: bgp_as
-          value: "65000"
-        - name: bgp_peeraddress
-        - name: bgp_peerpass
-        - name: bgp_peeras
-          value: "65000"
 %{ else }
         - name: vip_packet
           value: "true"

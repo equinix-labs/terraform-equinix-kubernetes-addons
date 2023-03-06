@@ -6,10 +6,6 @@
 # TEMPLATE: When main.tf becomes unwieldy, consider submodules (https://www.terraform.io/docs/language/modules/develop/structure.html) 
 # TEMPLATE: and dependency inversion (https://www.terraform.io/docs/language/modules/develop/composition.html).
 #
-provider "equinix" {
-  auth_token = var.metal_auth_token
-}
-
 provider "kubectl" {
   config_path = var.kubeconfig_local_path
 }
@@ -17,12 +13,13 @@ provider "kubectl" {
 module "equinix_kubernetes_addons" {
   source = "../../../../"
 
-  # equinix_project = "" // Equinix Metal project ID. Required only if kube_vip_config.cpem_installed is false.
+  equinix_project = var.metal_project_id # Equinix Metal project ID. Required ONLY IF kube_vip_config.cpem_installed is `false`
 
   enable_kube_vip = true
-  # kube_vip_config = {
-  #   # version = "v5.10.0" //if not specified it will get latest available
-  #   # cpem_installed = true //Set true if cloud-provider-equinix-metal addon is being enabled in the module or is already running on the kubernetes cluster. Defaults to true
-  #   # metal_key = var.metal_auth_token // required only if cpem_installed is false.
-  # }
+
+  kube_vip_config = {
+    # version = "v0.5.11" # if not specified it will get latest version. v0.5.11 is the minium supported version
+    cpem_installed = var.cpem_installed   # set `false` if cloud-provider-equinix-metal addon is NOT being enabled in the module or CPEM is NOT already running on the kubernetes cluster. If not specified it defaults to `true`
+    metal_key      = var.metal_auth_token # required ONLY IF kube_vip_config.cpem_installed is `false`
+  }
 }
