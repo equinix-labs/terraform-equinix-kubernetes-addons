@@ -19,7 +19,7 @@ module "equinix_kubernetes_addons" {
 
   kube_vip_config = {
     # version = "v0.5.11" # if not specified it will get latest version. v0.5.11 is the minium supported version
-    cpem_installed = var.cpem_installed   # set `false` if cloud-provider-equinix-metal addon is NOT being enabled in the module or CPEM is NOT already running on the kubernetes cluster. If not specified it defaults to `true`
+    cpem_installed = var.cpem_installed   # set `false` if cloud-provider-equinix-metal addon is NOT being enabled in the module or CPEM is NOT already running on the kubernetes cluster. If `kube_vip_config.cpem_installed` is not specified it defaults to `true`
     metal_key      = var.metal_auth_token # required ONLY IF kube_vip_config.cpem_installed is `false`
   }
 }

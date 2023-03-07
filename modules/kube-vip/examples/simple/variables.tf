@@ -22,7 +22,7 @@ variable "metal_project_id" {
 variable "cpem_installed" {
   description = <<EOT
 set `false` if cloud-provider-equinix-metal addon is NOT being enabled in the equinix_kubernetes_addons
-module or CPEM is NOT already running on the kubernetes cluster. If not specified it defaults to `true`
+module or CPEM is NOT already running on the kubernetes cluster
 EOT
   type        = bool
   default     = false

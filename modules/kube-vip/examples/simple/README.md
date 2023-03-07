@@ -1,7 +1,23 @@
 <!-- TEMPLATE: This file was automatically generated with `generate_addon_structure.sh` and should be modified as necessary -->
 ## Simple Example
 
-This example demonstrates usage of the Kube-vip addon module.
+This example demonstrates usage of the Kube-vip addon module. In this example it is assumed
+[cloud-provider-equinix-metal](https://github.com/equinix/cloud-provider-equinix-metal)(CPEM) is not running in your cluster.
+Therefore, the module requires the field `equinix_project` and the `kube_vip_config` block with the `cpem_installed` field set to `false`
+and your `metal_key`. For installations where CPEM is running or being enabled, these field can be omitted at all as in the example below.
+
+- Example module configuration when CPEM is already running in the cluster
+
+```
+provider "kubectl" {
+  config_path = var.kubeconfig_local_path
+}
+
+module "equinix_kubernetes_addons" {
+  source = "../../../../"
+  enable_kube_vip = true
+}
+```
 
 ## Prerequisites
 
