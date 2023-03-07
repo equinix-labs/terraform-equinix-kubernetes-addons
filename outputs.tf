@@ -22,3 +22,8 @@ output "portworx_data_services" {
   value       = module.portworx_data_services
   description = "Map of attributes available for the Portworx_data_services addon"
 }
+
+output "kube_vip" {
+  value       = module.kube_vip
+  description = "Map of attributes available for the Kube-vip addon"
+}
