@@ -19,7 +19,6 @@ For more details checkout [Portworx_data_services](https://pds.docs.portworx.com
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >=2.17.0 |
 | <a name="requirement_local"></a> [local](#requirement\_local) | >= 2.0 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | >=3.0 |
-| <a name="requirement_template"></a> [template](#requirement\_template) | >= 2.0 |
 
 ### Providers
 
