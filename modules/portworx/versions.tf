@@ -16,7 +16,6 @@ terraform {
       source  = "equinix/equinix"
       version = ">= 1.11.1"
     }
-    template = ">= 2.0"
     local    = ">= 2.0"
     external = ">=2.0"
     null     = ">=3.0"
