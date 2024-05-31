@@ -19,7 +19,7 @@ jobs:
 
       - name: Render terraform docs inside the main and the modules README.md files and push changes back to PR branch
         id: terraform-docs
-        uses: terraform-docs/gh-actions@v1.0.0
+        uses: terraform-docs/gh-actions@v1.2.0
         with:
           find-dir: .
           args: --sort-by required
