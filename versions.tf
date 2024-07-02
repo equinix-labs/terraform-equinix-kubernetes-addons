@@ -7,7 +7,7 @@ terraform {
   required_providers {
     equinix = {
       source  = "equinix/equinix"
-      version = "~> 1.14"
+      version = "~> 2.0"
     }
     helm = {
       source  = "hashicorp/helm"
